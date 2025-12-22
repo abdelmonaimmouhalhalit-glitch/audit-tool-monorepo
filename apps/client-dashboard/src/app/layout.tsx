@@ -3,7 +3,7 @@
 import './global.css';
 
 export const metadata = {
-  title: 'FlashAudit - Conformité NIS 2 & RGPD',
+  title: 'Toly - Conformité NIS 2 & RGPD',
   description: 'Audit de sécurité Cloud en 5 minutes.',
 };
 

@@ -1,7 +1,4 @@
-// apps/client-dashboard/src/app/(dashboard)/layout.tsx
-
-import Link from 'next/link';
-import styles from './dashboard.module.css'; // Importe les styles
+import Sidebar from '../../components/Sidebar';
 
 export default function DashboardLayout({
   children,
@@ -9,29 +6,21 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={styles.pageWrapper}>
-      {/* Sidebar */}
-      <aside className={styles.sidebar}>
-        <div className={styles.sidebarHeader}>FlashAudit</div>
-        <nav style={{ flexGrow: 1, padding: '16px' }}>
-          <Link href="/dashboard" className={styles.navLink}>Vue d'ensemble</Link>
-          <Link href="/audit/progress?jobId=new" className={styles.navLink}>Nouvel Audit</Link>
-          <Link href="/reports" className={styles.navLink}>Rapports</Link>
-          <Link href="/settings" className={styles.navLink}>Paramètres</Link>
-        </nav>
-      </aside>
+    // Conteneur principal avec le fond gris clair de Vanta
+    <div className="flex min-h-screen bg-[#f7f9fc]">
+      
+      {/* La Sidebar est fixée à gauche */}
+      <div className="fixed inset-y-0 left-0 z-50 w-64">
+        <Sidebar />
+      </div>
 
-      {/* Main Content */}
-      <main className={styles.mainContent}>
-        {/* Header */}
-        <header className={styles.header}>
-          <h1 className={styles.headerTitle}>Espace Client</h1>
-          <div className={styles.avatar}>JD</div>
-        </header>
-        <div className={styles.pagePadded}>
-          {children}
+      {/* Le contenu principal est décalé vers la droite (pl-64) pour ne pas passer sous la sidebar */}
+      <main className="flex-1 pl-64">
+        <div className="p-8 max-w-7xl mx-auto">
+            {children}
         </div>
       </main>
+
     </div>
   );
 }

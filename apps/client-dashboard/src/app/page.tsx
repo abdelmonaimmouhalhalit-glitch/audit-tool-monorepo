@@ -24,7 +24,7 @@ export default function LandingPage() {
           marginBottom: '0.5rem',
         }}
       >
-        Audit Flash <span style={{ color: 'var(--color-primary)' }}>NIS 2</span>
+        Toly <span style={{ color: 'var(--color-primary)' }}>NIS 2</span>
       </h1>
       
       <p 

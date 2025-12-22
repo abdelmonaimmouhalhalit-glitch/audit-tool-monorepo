@@ -1,57 +1,35 @@
-/* apps/client-dashboard/src/app/global.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Reset CSS de base */
-body { margin: 0; font-family: Arial, sans-serif; background-color: #f3f4f6; }
-h1, h2, h3, p { margin: 0; }
-
-/* Variables de Couleurs basées sur le rapport stratégique (Microsoft/Azure) */
-:root {
-  --color-primary: #0078D4; /* Bleu Principal */
-  --color-secondary: #2B3137;
-  --color-success: #107C10;
-  --color-warning: #D83B01;
-  --color-danger: #A80000;
-
-  --color-danger-light: #fbe6e6;
-  --color-warning-light: #fef3e9;
+/* Configuration de base pour ressembler à Vanta */
+@layer base {
+  body {
+    /* Couleur de fond gris très clair + texte sombre par défaut */
+    @apply bg-[#f7f9fc] text-[#1a1f36] antialiased;
+  }
   
-  --color-background-light: #ffffff;
-  --color-background-gray: #f9fafb;
-  --color-border: #e5e7eb;
-  
-  --color-text-primary: #1f2937;
-  --color-text-secondary: #6b7280;
+  /* Titres plus nets */
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
+  }
 }
 
-/* Styles globaux pour le wrapper */
-.app-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+/* --- Optionnel : Scrollbar moderne (Style Mac/Vanta) --- */
+/* Pour Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-.link-button {
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: 500;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    text-align: center;
+::-webkit-scrollbar-track {
+  background: transparent;
 }
-.primary-button {
-    background-color: var(--color-primary);
-    color: white;
-    border: none;
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full border-2 border-transparent bg-clip-content;
 }
-.primary-button:hover {
-    background-color: #005bb5;
-}
-.secondary-button {
-    background-color: white;
-    color: var(--color-text-primary);
-    border: 1px solid var(--color-border);
-}
-.secondary-button:hover {
-    background-color: var(--color-background-gray);
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
 }
