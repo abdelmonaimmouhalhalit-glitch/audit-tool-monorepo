@@ -1,0 +1,274 @@
+openapi: 3.1.0
+info:
+  title: NIS 2 Cybersecurity Audit Platform API
+  version: 1.0.0
+  description: |
+    API Gateway pour la plateforme SaaS d'audit de cybersécurité.
+    Cette API orchestre les microservices d'audit (M365, Google), de normalisation et de remédiation.
+
+    **Architecture :**
+    - Authentification : Bearer Token (JWT via Clerk/NextAuth)
+    - Format de réponse : JSON (Standardisé)
+    - Standards : SARIF (Audit Results), OCSF (Logs)
+  contact:
+    name: Équipe DevOps
+    email: support@audit-tool.local
+
+servers:
+  - url: http://localhost:3000/api/v1
+    description: Serveur de développement local
+  - url: https://api.production.com/v1
+    description: API de Production
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    # --- Objets de Requête (DTOs) ---
+
+    StartAuditRequest:
+      type: object
+      required:
+        - targets
+      properties:
+        tenantId:
+          type: string
+          format: uuid
+          description: ID interne du client (Organisation)
+        targets:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            enum: ["M365", "GOOGLE_WORKSPACE", "AWS"] # CORRIGÉ
+          description: Les environnements à scanner.
+        scanType:
+          type: string
+          enum: ["QUICK", "FULL", "DEEP"] # CORRIGÉ
+          default: QUICK
+
+    RemediationRequest:
+      type: object
+      required:
+        - findingId
+        - action
+      properties:
+        findingId:
+          type: string
+          description: ID unique de la vulnérabilité (issu du rapport SARIF)
+        action:
+          type: string
+          enum: ["ENABLE_MFA", "DISABLE_GUEST", "ENFORCE_LOGS"] # CORRIGÉ
+        parameters:
+          type: object
+          description: "Paramètres optionnels pour le correctif (ex: liste d'utilisateurs exclus)"
+
+    # --- Objets de Réponse ---
+
+    AuditJobResponse:
+      type: object
+      properties:
+        jobId:
+          type: string
+          format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440000"
+        status:
+          type: string
+          enum: ["QUEUED", "RUNNING", "COMPLETED", "FAILED"] # CORRIGÉ
+        estimatedDuration:
+          type: integer
+          description: Temps estimé en secondes
+          example: 120
+
+    Nis2ScoreResponse:
+      type: object
+      properties:
+        globalScore:
+          type: integer
+          minimum: 0
+          maximum: 100
+          example: 65
+        complianceLevel:
+          type: string
+          enum: ["LOW", "MEDIUM", "HIGH", "CRITICAL"] # CORRIGÉ
+        breakdown:
+          type: object
+          properties:
+            accessControl:
+              type: integer
+              description: Score Art. 21.2(i) - Contrôle d'accès
+            incidentResponse:
+              type: integer
+              description: Score Art. 21.2(b) - Gestion incidents
+            supplyChain:
+              type: integer
+              description: Score Art. 21.2(d) - Sécurité chaîne d'approvisionnement
+
+    # --- Standard SARIF (Simplifié pour l'affichage) ---
+
+    SarifReport:
+      type: object
+      description: Structure simplifiée d'un rapport SARIF pour le frontend
+      properties:
+        runs:
+          type: array
+          items:
+            type: object
+            properties:
+              tool:
+                type: object
+                properties:
+                  driver:
+                    type: object
+                    properties:
+                      name: 
+                        type: string
+                        example: "Maester M365 Scanner"
+              results:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuditFinding'
+
+    AuditFinding:
+      type: object
+      properties:
+        ruleId:
+          type: string
+          example: "M365-MFA-001"
+        level:
+          type: string
+          enum: [error, warning, note]
+        message:
+          type: object
+          properties:
+            text:
+              type: string
+              example: "MFA is not enabled for Global Admin accounts."
+        locations:
+          type: array
+          items:
+            type: object
+            properties:
+              physicalLocation:
+                type: object
+                properties:
+                  artifactLocation:
+                    type: object
+                    properties:
+                      uri:
+                        type: string
+                        example: "https://graph.microsoft.com/v1.0/users/admin@contoso.com"
+
+security:
+  - bearerAuth: []
+
+paths:
+  # --- Gestion des Audits ---
+
+  /audits:
+    post:
+      summary: Lancer un nouveau scan de sécurité
+      operationId: startAudit
+      tags: [Audit]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartAuditRequest'
+      responses:
+        '202':
+          description: Scan accepté et mis en file d'attente (Asynchrone)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditJobResponse'
+        '401':
+          description: Non autorisé
+
+  /audits/{jobId}/status:
+    get:
+      summary: Vérifier l'état d'un scan en cours
+      operationId: getAuditStatus
+      tags: [Audit]
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Statut actuel
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditJobResponse'
+
+  /audits/{jobId}/report:
+    get:
+      summary: Récupérer les résultats détaillés (SARIF)
+      description: Retourne le JSON standardisé contenant toutes les vulnérabilités trouvées.
+      operationId: getAuditReport
+      tags: [Audit]
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Rapport complet
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SarifReport'
+
+  # --- Conformité NIS 2 ---
+
+  /compliance/nis2/score:
+    get:
+      summary: Obtenir le score NIS 2 actuel
+      description: Calcule le score basé sur le dernier audit valide.
+      operationId: getNis2Score
+      tags: [Compliance]
+      parameters:
+        - name: tenantId
+          in: query
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Score calculé
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Nis2ScoreResponse'
+
+  # --- Remédiation (Actions Correctives) ---
+
+  /remediations:
+    post:
+      summary: Appliquer un correctif de sécurité
+      description: "Lance une action corrective sur le tenant cible (ex: Activer MFA). Cette action est critique et sera logguée dans l'audit trail (OCSF)."
+      operationId: executeRemediation
+      tags: [Remediation] # CORRIGÉ (C'était vide avant)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemediationRequest'
+      responses:
+        '200':
+          description: Action de remédiation lancée avec succès
+        '403':
+          description: "Action interdite (ex: Compte Break-Glass détecté)"

@@ -1,0 +1,52 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "strict": true,
+    "noEmit": true,
+    "emitDeclarationOnly": false,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "types": ["jest", "node"],
+    
+    // -----------------------------------------------------------------
+    // AJOUT CRITIQUE POUR RÉSOUDRE LES IMPORTS '@/...'
+    // -----------------------------------------------------------------
+    "paths": {
+      // Configure l'alias '@/...' pour pointer vers le dossier src/ de l'application
+      "@/*": ["./src/*"] 
+    }
+    // -----------------------------------------------------------------
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    "../../apps/client-dashboard/.next/types/**/*.ts",
+    "../../dist/apps/client-dashboard/.next/types/**/*.ts",
+    "next-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "jest.config.ts",
+    "jest.config.cts",
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ]
+}

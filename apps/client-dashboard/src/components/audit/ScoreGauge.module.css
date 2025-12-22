@@ -1,0 +1,44 @@
+/* apps/client-dashboard/src/components/audit/ScoreGauge.module.css */
+
+.scoreGaugeContainer {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.scoreGauge {
+    position: relative;
+    width: 128px;
+    height: 128px;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 6px solid var(--color-border);
+}
+.scoreContent {
+    text-align: center;
+}
+.scoreValue {
+    font-size: 2.5rem;
+    font-weight: bold;
+    display: block;
+}
+.scoreMax {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+}
+.scoreLabel {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+.scoreHigh { 
+    color: var(--color-success); 
+}
+.scoreMedium { 
+    color: var(--color-warning); 
+}
+.scoreLow { 
+    color: var(--color-danger); 
+}

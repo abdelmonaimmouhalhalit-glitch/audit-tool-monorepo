@@ -1,0 +1,25 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@audit-tool-monorepo/shared-types": ["libs/shared-types/src/index.ts"],
+      "@audit-tool-monorepo/api-client": ["libs/api-client/src/index.ts"],
+      "@audit-tool-monorepo/libs": ["libs/src/index.ts"],
+      "@audit-tool-monorepo/audit-engine": ["libs/audit-engine/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

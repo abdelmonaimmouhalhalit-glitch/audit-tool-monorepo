@@ -1,0 +1,57 @@
+/* apps/client-dashboard/src/app/global.css */
+
+/* Reset CSS de base */
+body { margin: 0; font-family: Arial, sans-serif; background-color: #f3f4f6; }
+h1, h2, h3, p { margin: 0; }
+
+/* Variables de Couleurs basées sur le rapport stratégique (Microsoft/Azure) */
+:root {
+  --color-primary: #0078D4; /* Bleu Principal */
+  --color-secondary: #2B3137;
+  --color-success: #107C10;
+  --color-warning: #D83B01;
+  --color-danger: #A80000;
+
+  --color-danger-light: #fbe6e6;
+  --color-warning-light: #fef3e9;
+  
+  --color-background-light: #ffffff;
+  --color-background-gray: #f9fafb;
+  --color-border: #e5e7eb;
+  
+  --color-text-primary: #1f2937;
+  --color-text-secondary: #6b7280;
+}
+
+/* Styles globaux pour le wrapper */
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.link-button {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-align: center;
+}
+.primary-button {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+}
+.primary-button:hover {
+    background-color: #005bb5;
+}
+.secondary-button {
+    background-color: white;
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+}
+.secondary-button:hover {
+    background-color: var(--color-background-gray);
+}

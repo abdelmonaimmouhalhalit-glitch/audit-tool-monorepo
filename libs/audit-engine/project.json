@@ -1,0 +1,9 @@
+{
+  "name": "audit-engine",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/audit-engine/src",
+  "projectType": "library",
+  "tags": ["scope:shared", "type:logic"],
+  "// targets": "to see all targets run: nx show project audit-engine --web",
+  "targets": {}
+}

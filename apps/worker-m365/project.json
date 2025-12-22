@@ -1,0 +1,23 @@
+{
+  "name": "worker-m365",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/worker-m365/src",
+  "tags": ["type:worker", "scope:m365"],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker build -t audit-tool/worker-m365:latest.",
+        "cwd": "apps/worker-m365"
+      }
+    },
+    "audit": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pwsh src/audit.ps1",
+        "cwd": "apps/worker-m365"
+      }
+    }
+  }
+}

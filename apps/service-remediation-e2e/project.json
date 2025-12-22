@@ -1,0 +1,17 @@
+{
+  "name": "service-remediation-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "implicitDependencies": ["service-remediation"],
+  "targets": {
+    "e2e": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{e2eProjectRoot}"],
+      "options": {
+        "jestConfig": "apps/service-remediation-e2e/jest.config.cts",
+        "passWithNoTests": true
+      },
+      "dependsOn": ["service-remediation:build", "service-remediation:serve"]
+    }
+  }
+}
