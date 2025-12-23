@@ -1437,13 +1437,30 @@
             "executor": "nx:run-commands",
             "configurations": {},
             "parallelism": true
+          },
+          "nx-release-publish": {
+            "executor": "@nx/js:release-publish",
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "options": {},
+            "configurations": {},
+            "parallelism": true
           }
         },
         "name": "client-dashboard",
+        "tags": [
+          "npm:public"
+        ],
+        "metadata": {
+          "targetGroups": {},
+          "js": {
+            "isInPackageManagerWorkspaces": false
+          }
+        },
         "$schema": "../../node_modules/nx/schemas/project-schema.json",
         "sourceRoot": "apps/client-dashboard",
         "projectType": "application",
-        "tags": [],
         "implicitDependencies": []
       }
     },
@@ -6697,6 +6714,60 @@
         "hash": "sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww=="
       }
     },
+    "npm:@prisma/client": {
+      "type": "npm",
+      "name": "npm:@prisma/client",
+      "data": {
+        "version": "5.22.0",
+        "packageName": "@prisma/client",
+        "hash": "sha512-M0SVXfyHnQREBKxCgyo7sffrKttwE6R8PMq330MIUF0pTwjUhLbW84pFDlf06B27XyCR++VtjugEnIHdr07SVA=="
+      }
+    },
+    "npm:@prisma/debug": {
+      "type": "npm",
+      "name": "npm:@prisma/debug",
+      "data": {
+        "version": "5.22.0",
+        "packageName": "@prisma/debug",
+        "hash": "sha512-AUt44v3YJeggO2ZU5BkXI7M4hu9BF2zzH2iF2V5pyXT/lRTyWiElZ7It+bRH1EshoMRxHgpYg4VB6rCM+mG5jQ=="
+      }
+    },
+    "npm:@prisma/engines": {
+      "type": "npm",
+      "name": "npm:@prisma/engines",
+      "data": {
+        "version": "5.22.0",
+        "packageName": "@prisma/engines",
+        "hash": "sha512-UNjfslWhAt06kVL3CjkuYpHAWSO6L4kDCVPegV6itt7nD1kSJavd3vhgAEhjglLJJKEdJ7oIqDJ+yHk6qO8gPA=="
+      }
+    },
+    "npm:@prisma/engines-version": {
+      "type": "npm",
+      "name": "npm:@prisma/engines-version",
+      "data": {
+        "version": "5.22.0-44.605197351a3c8bdd595af2d2a9bc3025bca48ea2",
+        "packageName": "@prisma/engines-version",
+        "hash": "sha512-2PTmxFR2yHW/eB3uqWtcgRcgAbG1rwG9ZriSvQw+nnb7c4uCr3RAcGMb6/zfE88SKlC1Nj2ziUvc96Z379mHgQ=="
+      }
+    },
+    "npm:@prisma/fetch-engine": {
+      "type": "npm",
+      "name": "npm:@prisma/fetch-engine",
+      "data": {
+        "version": "5.22.0",
+        "packageName": "@prisma/fetch-engine",
+        "hash": "sha512-bkrD/Mc2fSvkQBV5EpoFcZ87AvOgDxbG99488a5cexp5Ccny+UM6MAe/UFkUC0wLYD9+9befNOqGiIJhhq+HbA=="
+      }
+    },
+    "npm:@prisma/get-platform": {
+      "type": "npm",
+      "name": "npm:@prisma/get-platform",
+      "data": {
+        "version": "5.22.0",
+        "packageName": "@prisma/get-platform",
+        "hash": "sha512-pHhpQdr1UPFpt+zFfnPazhulaZYCUqeIcPpJViYoq9R+D/yw4fjE+CtnsnKzPYm0ddUbeXUzjGVGIRVgPDCk4Q=="
+      }
+    },
     "npm:@remix-run/router": {
       "type": "npm",
       "name": "npm:@remix-run/router",
@@ -8027,6 +8098,15 @@
         "version": "0.2.38",
         "packageName": "@types/passport-strategy",
         "hash": "sha512-GC6eMqqojOooq993Tmnmp7AUTbbQSgilyvpCYQjT+H6JfG/g6RGc7nXEniZlp0zyKJ0WUdOiZWLBZft9Yug1uA=="
+      }
+    },
+    "npm:@types/pg": {
+      "type": "npm",
+      "name": "npm:@types/pg",
+      "data": {
+        "version": "8.16.0",
+        "packageName": "@types/pg",
+        "hash": "sha512-RmhMd/wD+CF8Dfo+cVIy3RR5cl8CyfXQ0tGgW6XBL8L4LM/UTEbNXYRbLwU6w+CgrKBNbrQWt4FUtTfaU5jSYQ=="
       }
     },
     "npm:@types/qs": {
@@ -15787,6 +15867,78 @@
         "hash": "sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg=="
       }
     },
+    "npm:pg": {
+      "type": "npm",
+      "name": "npm:pg",
+      "data": {
+        "version": "8.16.3",
+        "packageName": "pg",
+        "hash": "sha512-enxc1h0jA/aq5oSDMvqyW3q89ra6XIIDZgCX9vkMrnz5DFTw/Ny3Li2lFQ+pt3L6MCgm/5o2o8HW9hiJji+xvw=="
+      }
+    },
+    "npm:pg-cloudflare": {
+      "type": "npm",
+      "name": "npm:pg-cloudflare",
+      "data": {
+        "version": "1.2.7",
+        "packageName": "pg-cloudflare",
+        "hash": "sha512-YgCtzMH0ptvZJslLM1ffsY4EuGaU0cx4XSdXLRFae8bPP4dS5xL1tNB3k2o/N64cHJpwU7dxKli/nZ2lUa5fLg=="
+      }
+    },
+    "npm:pg-connection-string": {
+      "type": "npm",
+      "name": "npm:pg-connection-string",
+      "data": {
+        "version": "2.9.1",
+        "packageName": "pg-connection-string",
+        "hash": "sha512-nkc6NpDcvPVpZXxrreI/FOtX3XemeLl8E0qFr6F2Lrm/I8WOnaWNhIPK2Z7OHpw7gh5XJThi6j6ppgNoaT1w4w=="
+      }
+    },
+    "npm:pg-int8": {
+      "type": "npm",
+      "name": "npm:pg-int8",
+      "data": {
+        "version": "1.0.1",
+        "packageName": "pg-int8",
+        "hash": "sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw=="
+      }
+    },
+    "npm:pg-pool": {
+      "type": "npm",
+      "name": "npm:pg-pool",
+      "data": {
+        "version": "3.10.1",
+        "packageName": "pg-pool",
+        "hash": "sha512-Tu8jMlcX+9d8+QVzKIvM/uJtp07PKr82IUOYEphaWcoBhIYkoHpLXN3qO59nAI11ripznDsEzEv8nUxBVWajGg=="
+      }
+    },
+    "npm:pg-protocol": {
+      "type": "npm",
+      "name": "npm:pg-protocol",
+      "data": {
+        "version": "1.10.3",
+        "packageName": "pg-protocol",
+        "hash": "sha512-6DIBgBQaTKDJyxnXaLiLR8wBpQQcGWuAESkRBX/t6OwA8YsqP+iVSiond2EDy6Y/dsGk8rh/jtax3js5NeV7JQ=="
+      }
+    },
+    "npm:pg-types": {
+      "type": "npm",
+      "name": "npm:pg-types",
+      "data": {
+        "version": "2.2.0",
+        "packageName": "pg-types",
+        "hash": "sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA=="
+      }
+    },
+    "npm:pgpass": {
+      "type": "npm",
+      "name": "npm:pgpass",
+      "data": {
+        "version": "1.0.5",
+        "packageName": "pgpass",
+        "hash": "sha512-FdW9r/jQZhSeohs1Z3sI1yxFQNFvMcnmfuj4WBMUTxOrAyLMaTcE1aAMBiTlbMNaXvBCQuVi0R7hd8udDSP7ug=="
+      }
+    },
     "npm:picocolors": {
       "type": "npm",
       "name": "npm:picocolors",
@@ -16498,6 +16650,42 @@
         "hash": "sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ=="
       }
     },
+    "npm:postgres-array": {
+      "type": "npm",
+      "name": "npm:postgres-array",
+      "data": {
+        "version": "2.0.0",
+        "packageName": "postgres-array",
+        "hash": "sha512-VpZrUqU5A69eQyW2c5CA1jtLecCsN2U/bD6VilrFDWq5+5UIEVO7nazS3TEcHf1zuPYO/sqGvUvW62g86RXZuA=="
+      }
+    },
+    "npm:postgres-bytea": {
+      "type": "npm",
+      "name": "npm:postgres-bytea",
+      "data": {
+        "version": "1.0.1",
+        "packageName": "postgres-bytea",
+        "hash": "sha512-5+5HqXnsZPE65IJZSMkZtURARZelel2oXUEO8rH83VS/hxH5vv1uHquPg5wZs8yMAfdv971IU+kcPUczi7NVBQ=="
+      }
+    },
+    "npm:postgres-date": {
+      "type": "npm",
+      "name": "npm:postgres-date",
+      "data": {
+        "version": "1.0.7",
+        "packageName": "postgres-date",
+        "hash": "sha512-suDmjLVQg78nMK2UZ454hAG+OAW+HQPZ6n++TNDUX+L0+uUlLywnoxJKDou51Zm+zTCjrCl0Nq6J9C5hP9vK/Q=="
+      }
+    },
+    "npm:postgres-interval": {
+      "type": "npm",
+      "name": "npm:postgres-interval",
+      "data": {
+        "version": "1.2.0",
+        "packageName": "postgres-interval",
+        "hash": "sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ=="
+      }
+    },
     "npm:prelude-ls": {
       "type": "npm",
       "name": "npm:prelude-ls",
@@ -16514,6 +16702,15 @@
         "version": "2.8.8",
         "packageName": "prettier",
         "hash": "sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q=="
+      }
+    },
+    "npm:prisma": {
+      "type": "npm",
+      "name": "npm:prisma",
+      "data": {
+        "version": "5.22.0",
+        "packageName": "prisma",
+        "hash": "sha512-vtpjW3XuYCSnMsNVBjLMNkTj6OZbudcPPTPYHqX0CJfpcdWciI1dM8uHETwmDxxiqEwCIE6WvXucWUetJgfu/A=="
       }
     },
     "npm:process-nextick-args": {
@@ -17630,6 +17827,15 @@
         "version": "3.0.0",
         "packageName": "spdy-transport",
         "hash": "sha512-hsLVFE5SjA6TCisWeJXFKniGGOpBgMLmerfO2aCyCU5s7nJ/rpAepqmFifv/GCbSbueEeAJJnmSQ2rKC/g8Fcw=="
+      }
+    },
+    "npm:split2": {
+      "type": "npm",
+      "name": "npm:split2",
+      "data": {
+        "version": "4.2.0",
+        "packageName": "split2",
+        "hash": "sha512-UcjcJOWknrNkF6PLX83qcHM6KHgVKNkV62Y8a5uYDVv9ydGQVwAHMKqHdJje1VTWpljG0WYpCDhrCdAOYH4TWg=="
       }
     },
     "npm:sprintf-js": {
@@ -19107,6 +19313,11 @@
       },
       {
         "source": "client-dashboard",
+        "target": "npm:lucide-react",
+        "type": "static"
+      },
+      {
+        "source": "client-dashboard",
         "target": "npm:@nx/react",
         "type": "static"
       }
@@ -19143,11 +19354,6 @@
       },
       {
         "source": "api-gateway",
-        "target": "shared-types",
-        "type": "static"
-      },
-      {
-        "source": "api-gateway",
         "target": "npm:@nestjs/passport",
         "type": "static"
       },
@@ -19159,6 +19365,11 @@
       {
         "source": "api-gateway",
         "target": "npm:jwks-rsa",
+        "type": "static"
+      },
+      {
+        "source": "api-gateway",
+        "target": "npm:@prisma/client",
         "type": "static"
       },
       {
@@ -19186,6 +19397,11 @@
       }
     ],
     "libs": [
+      {
+        "source": "libs",
+        "target": "npm:@prisma/client",
+        "type": "static"
+      },
       {
         "source": "libs",
         "target": "npm:jsonc-eslint-parser",
@@ -25910,6 +26126,59 @@
         "type": "static"
       }
     ],
+    "npm:@prisma/client": [
+      {
+        "source": "npm:@prisma/client",
+        "target": "npm:prisma",
+        "type": "static"
+      }
+    ],
+    "npm:@prisma/engines": [
+      {
+        "source": "npm:@prisma/engines",
+        "target": "npm:@prisma/debug",
+        "type": "static"
+      },
+      {
+        "source": "npm:@prisma/engines",
+        "target": "npm:@prisma/engines-version",
+        "type": "static"
+      },
+      {
+        "source": "npm:@prisma/engines",
+        "target": "npm:@prisma/fetch-engine",
+        "type": "static"
+      },
+      {
+        "source": "npm:@prisma/engines",
+        "target": "npm:@prisma/get-platform",
+        "type": "static"
+      }
+    ],
+    "npm:@prisma/fetch-engine": [
+      {
+        "source": "npm:@prisma/fetch-engine",
+        "target": "npm:@prisma/debug",
+        "type": "static"
+      },
+      {
+        "source": "npm:@prisma/fetch-engine",
+        "target": "npm:@prisma/engines-version",
+        "type": "static"
+      },
+      {
+        "source": "npm:@prisma/fetch-engine",
+        "target": "npm:@prisma/get-platform",
+        "type": "static"
+      }
+    ],
+    "npm:@prisma/get-platform": [
+      {
+        "source": "npm:@prisma/get-platform",
+        "target": "npm:@prisma/debug",
+        "type": "static"
+      }
+    ],
     "npm:@rollup/plugin-babel": [
       {
         "source": "npm:@rollup/plugin-babel",
@@ -27056,6 +27325,23 @@
       {
         "source": "npm:@types/passport-strategy",
         "target": "npm:@types/passport",
+        "type": "static"
+      }
+    ],
+    "npm:@types/pg": [
+      {
+        "source": "npm:@types/pg",
+        "target": "npm:@types/node",
+        "type": "static"
+      },
+      {
+        "source": "npm:@types/pg",
+        "target": "npm:pg-protocol",
+        "type": "static"
+      },
+      {
+        "source": "npm:@types/pg",
+        "target": "npm:pg-types",
         "type": "static"
       }
     ],
@@ -37121,6 +37407,79 @@
         "type": "static"
       }
     ],
+    "npm:pg": [
+      {
+        "source": "npm:pg",
+        "target": "npm:pg-connection-string",
+        "type": "static"
+      },
+      {
+        "source": "npm:pg",
+        "target": "npm:pg-pool",
+        "type": "static"
+      },
+      {
+        "source": "npm:pg",
+        "target": "npm:pg-protocol",
+        "type": "static"
+      },
+      {
+        "source": "npm:pg",
+        "target": "npm:pg-types",
+        "type": "static"
+      },
+      {
+        "source": "npm:pg",
+        "target": "npm:pgpass",
+        "type": "static"
+      },
+      {
+        "source": "npm:pg",
+        "target": "npm:pg-cloudflare",
+        "type": "static"
+      }
+    ],
+    "npm:pg-pool": [
+      {
+        "source": "npm:pg-pool",
+        "target": "npm:pg",
+        "type": "static"
+      }
+    ],
+    "npm:pg-types": [
+      {
+        "source": "npm:pg-types",
+        "target": "npm:pg-int8",
+        "type": "static"
+      },
+      {
+        "source": "npm:pg-types",
+        "target": "npm:postgres-array",
+        "type": "static"
+      },
+      {
+        "source": "npm:pg-types",
+        "target": "npm:postgres-bytea",
+        "type": "static"
+      },
+      {
+        "source": "npm:pg-types",
+        "target": "npm:postgres-date",
+        "type": "static"
+      },
+      {
+        "source": "npm:pg-types",
+        "target": "npm:postgres-interval",
+        "type": "static"
+      }
+    ],
+    "npm:pgpass": [
+      {
+        "source": "npm:pgpass",
+        "target": "npm:split2",
+        "type": "static"
+      }
+    ],
     "npm:piscina": [
       {
         "source": "npm:piscina",
@@ -37812,6 +38171,13 @@
         "type": "static"
       }
     ],
+    "npm:postgres-interval": [
+      {
+        "source": "npm:postgres-interval",
+        "target": "npm:xtend",
+        "type": "static"
+      }
+    ],
     "npm:pretty-format": [
       {
         "source": "npm:pretty-format",
@@ -37826,6 +38192,18 @@
       {
         "source": "npm:pretty-format",
         "target": "npm:react-is",
+        "type": "static"
+      }
+    ],
+    "npm:prisma": [
+      {
+        "source": "npm:prisma",
+        "target": "npm:@prisma/engines",
+        "type": "static"
+      },
+      {
+        "source": "npm:prisma",
+        "target": "npm:fsevents",
         "type": "static"
       }
     ],
@@ -42829,5 +43207,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1766420675312
+  "computedAt": 1766501810157
 }

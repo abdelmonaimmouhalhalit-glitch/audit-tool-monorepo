@@ -1,0 +1,60 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=johndoe
+      - POSTGRES_PASSWORD=randompassword
+      - POSTGRES_DB=auditdb
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U johndoe -d auditdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - toly-network
+
+  steampipe:
+    # CORRECTION : On construit notre image propre au lieu d'utiliser la latest brute
+    build:
+      context: .
+      dockerfile: Dockerfile.steampipe
+    container_name: steampipe
+    environment:
+      - STEAMPIPE_DATABASE_AUTH=false
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+    volumes:
+      # On garde SEULEMENT la config en externe (c'est normal en dev)
+      - ./steampipe_config/github.spc:/home/steampipe/.steampipe/config/github.spc:ro
+      # SUPPRESSION du volume ./steampipe_plugins (plus besoin, c'est dans l'image !)
+    healthcheck:
+      test: ["CMD-SHELL", "steampipe query 'select 1'"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    ports:
+      - "9193:9193"
+    networks:
+      - toly-network
+
+  worker-github:
+    build:
+      context: .
+      dockerfile: apps/worker-github/Dockerfile
+    container_name: worker-github
+    environment:
+      - DATABASE_URL=postgresql://johndoe:randompassword@postgres:5432/auditdb?schema=public
+      - STEAMPIPE_URL=postgresql://steampipe@steampipe:9193/steampipe
+    depends_on:
+      postgres:
+        condition: service_healthy
+      steampipe:
+        condition: service_healthy
+    networks:
+      - toly-network
+    restart: on-failure
+
+networks:
+  toly-network:
+    driver: bridge

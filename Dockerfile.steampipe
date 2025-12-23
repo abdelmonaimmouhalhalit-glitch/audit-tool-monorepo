@@ -1,0 +1,19 @@
+# Dockerfile.steampipe
+FROM turbot/steampipe:latest
+
+# 1. Passage en root pour les manips
+USER root
+
+# 2. Copie des plugins
+COPY ./steampipe_plugins /home/steampipe/.steampipe/plugins
+
+# 3. CORRECTION : On utilise l'ID numérique (9193) au lieu du nom
+# Cela évite l'erreur "invalid group" car 9193 est l'ID universel de Steampipe
+RUN chown -R 9193:9193 /home/steampipe/.steampipe
+
+# 4. On repasse sur l'utilisateur standard
+USER steampipe
+
+# 5. Démarrage
+ENTRYPOINT ["steampipe"]
+CMD ["service", "start", "--foreground", "--database-listen", "network"]

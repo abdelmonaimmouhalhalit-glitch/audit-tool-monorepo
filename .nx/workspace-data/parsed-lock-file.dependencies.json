@@ -6800,6 +6800,51 @@
     "type": "static"
   },
   {
+    "source": "npm:@prisma/client",
+    "target": "npm:prisma",
+    "type": "static"
+  },
+  {
+    "source": "npm:@prisma/engines",
+    "target": "npm:@prisma/debug",
+    "type": "static"
+  },
+  {
+    "source": "npm:@prisma/engines",
+    "target": "npm:@prisma/engines-version",
+    "type": "static"
+  },
+  {
+    "source": "npm:@prisma/engines",
+    "target": "npm:@prisma/fetch-engine",
+    "type": "static"
+  },
+  {
+    "source": "npm:@prisma/engines",
+    "target": "npm:@prisma/get-platform",
+    "type": "static"
+  },
+  {
+    "source": "npm:@prisma/fetch-engine",
+    "target": "npm:@prisma/debug",
+    "type": "static"
+  },
+  {
+    "source": "npm:@prisma/fetch-engine",
+    "target": "npm:@prisma/engines-version",
+    "type": "static"
+  },
+  {
+    "source": "npm:@prisma/fetch-engine",
+    "target": "npm:@prisma/get-platform",
+    "type": "static"
+  },
+  {
+    "source": "npm:@prisma/get-platform",
+    "target": "npm:@prisma/debug",
+    "type": "static"
+  },
+  {
     "source": "npm:@rollup/plugin-babel",
     "target": "npm:@babel/core",
     "type": "static"
@@ -7827,6 +7872,21 @@
   {
     "source": "npm:@types/passport-strategy",
     "target": "npm:@types/passport",
+    "type": "static"
+  },
+  {
+    "source": "npm:@types/pg",
+    "target": "npm:@types/node",
+    "type": "static"
+  },
+  {
+    "source": "npm:@types/pg",
+    "target": "npm:pg-protocol",
+    "type": "static"
+  },
+  {
+    "source": "npm:@types/pg",
+    "target": "npm:pg-types",
     "type": "static"
   },
   {
@@ -17665,6 +17725,71 @@
     "type": "static"
   },
   {
+    "source": "npm:pg",
+    "target": "npm:pg-connection-string",
+    "type": "static"
+  },
+  {
+    "source": "npm:pg",
+    "target": "npm:pg-pool",
+    "type": "static"
+  },
+  {
+    "source": "npm:pg",
+    "target": "npm:pg-protocol",
+    "type": "static"
+  },
+  {
+    "source": "npm:pg",
+    "target": "npm:pg-types",
+    "type": "static"
+  },
+  {
+    "source": "npm:pg",
+    "target": "npm:pgpass",
+    "type": "static"
+  },
+  {
+    "source": "npm:pg",
+    "target": "npm:pg-cloudflare",
+    "type": "static"
+  },
+  {
+    "source": "npm:pg-pool",
+    "target": "npm:pg",
+    "type": "static"
+  },
+  {
+    "source": "npm:pg-types",
+    "target": "npm:pg-int8",
+    "type": "static"
+  },
+  {
+    "source": "npm:pg-types",
+    "target": "npm:postgres-array",
+    "type": "static"
+  },
+  {
+    "source": "npm:pg-types",
+    "target": "npm:postgres-bytea",
+    "type": "static"
+  },
+  {
+    "source": "npm:pg-types",
+    "target": "npm:postgres-date",
+    "type": "static"
+  },
+  {
+    "source": "npm:pg-types",
+    "target": "npm:postgres-interval",
+    "type": "static"
+  },
+  {
+    "source": "npm:pgpass",
+    "target": "npm:split2",
+    "type": "static"
+  },
+  {
     "source": "npm:piscina",
     "target": "npm:@napi-rs/nice",
     "type": "static"
@@ -18295,6 +18420,11 @@
     "type": "static"
   },
   {
+    "source": "npm:postgres-interval",
+    "target": "npm:xtend",
+    "type": "static"
+  },
+  {
     "source": "npm:pretty-format",
     "target": "npm:ansi-regex",
     "type": "static"
@@ -18307,6 +18437,16 @@
   {
     "source": "npm:pretty-format",
     "target": "npm:react-is",
+    "type": "static"
+  },
+  {
+    "source": "npm:prisma",
+    "target": "npm:@prisma/engines",
+    "type": "static"
+  },
+  {
+    "source": "npm:prisma",
+    "target": "npm:fsevents",
     "type": "static"
   },
   {

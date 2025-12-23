@@ -1,0 +1,31 @@
+[1m[33mNX Daemon is not running. Node process will not restart automatically after file changes.[39m[22m
+[?25l
+[2m> [22m[2mnx run[22m api-gateway:build:development
+
+chunk (runtime: main) [1m[32mmain.js[39m[22m (main) 8.56 KiB [1m[33m[entry][39m[22m [1m[32m[rendered][39m[22m
+webpack compiled [1m[32msuccessfully[39m[22m (5a4d0666a0cd63f4)
+[0K
+[2m[32m——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————[39m[22m[0K
+[0K
+[0m[7m[1m[32m NX [39m[22m[27m[0m  [32mSuccessfully ran target [1mbuild[22m for project api-gateway[39m[2m (5s)[22m[0K
+[0K
+[0J[?25h
+[0m[7m[1m[31m NX [39m[22m[27m[0m  [31mNx Cloud wasn't able to store artifacts to the remote cache.[39m
+
+
+[0m[7m[1m[33m NX [39m[22m[27m[0m  [33mNx Cloud encountered some problems[39m
+
+This workspace is more than three days old and is not connected. Workspaces must be connected within 3 days of creation. Claim your workspace at https://cloud.nx.app. (code: 401)
+
+[?25h[?25h[1m[31mDebugger listening on ws://localhost:9229/29a6ada5-cd57-4326-8226-a1bf66f59294[39m[22m
+[1m[31m[39m[22m
+[1m[31mFor help, see: https://nodejs.org/en/docs/inspector[39m[22m
+[1m[31m[39m[22m
+[32m[Nest] 295217  - [39m12/22/2025, 11:20:48 PM [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[32m[Nest] 295217  - [39m12/22/2025, 11:20:48 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +11ms[39m
+[32m[Nest] 295217  - [39m12/22/2025, 11:20:48 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAppController {/api/api}:[39m[38;5;3m +15ms[39m
+[32m[Nest] 295217  - [39m12/22/2025, 11:20:48 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/api/dashboard, GET} route[39m[38;5;3m +3ms[39m
+[32m[Nest] 295217  - [39m12/22/2025, 11:20:48 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/api/controls, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 295217  - [39m12/22/2025, 11:20:48 PM [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +98ms[39m
+[32m[Nest] 295217  - [39m12/22/2025, 11:20:48 PM [32m    LOG[39m [32m🚀 Application is running on: http://localhost:3333/api[39m
+[32m[Nest] 295217  - [39m12/22/2025, 11:20:48 PM [32m    LOG[39m [32m📑 Swagger Documentation is available on: http://localhost:3333/api/docs[39m

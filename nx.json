@@ -48,7 +48,8 @@
         "apps/api-gateway-e2e/**/*",
         "apps/service-normalizer-e2e/**/*",
         "apps/service-remediation-e2e/**/*",
-        "apps/worker-gworkspace-e2e/**/*"
+        "apps/worker-gworkspace-e2e/**/*",
+        "apps/worker-github-e2e/**/*"
       ]
     },
     {

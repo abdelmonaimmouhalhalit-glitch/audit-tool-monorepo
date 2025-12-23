@@ -1,0 +1,21 @@
+{
+  "run": {
+    "command": "nx serve api-gateway",
+    "startTime": "2025-12-22T22:20:35.997Z",
+    "endTime": "2025-12-22T22:35:48.197Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "api-gateway:build",
+      "target": "build",
+      "projectName": "api-gateway",
+      "hash": "4945021947910393492",
+      "startTime": "2025-12-22T22:20:36.009Z",
+      "endTime": "2025-12-22T22:20:40.500Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    }
+  ]
+}

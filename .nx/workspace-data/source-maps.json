@@ -288,6 +288,42 @@
       "apps/client-dashboard/project.json",
       "nx/core/project-json"
     ],
+    "tags": [
+      "apps/client-dashboard/package.json",
+      "nx/core/package-json"
+    ],
+    "tags.npm:public": [
+      "apps/client-dashboard/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups": [
+      "apps/client-dashboard/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js": [
+      "apps/client-dashboard/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.isInPackageManagerWorkspaces": [
+      "apps/client-dashboard/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish": [
+      "apps/client-dashboard/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish.executor": [
+      "apps/client-dashboard/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish.dependsOn": [
+      "apps/client-dashboard/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish.options": [
+      "apps/client-dashboard/package.json",
+      "nx/core/package-json"
+    ],
     "$schema": [
       "apps/client-dashboard/project.json",
       "nx/core/project-json"
@@ -301,10 +337,6 @@
       "nx/core/project-json"
     ],
     "// targets": [
-      "apps/client-dashboard/project.json",
-      "nx/core/project-json"
-    ],
-    "tags": [
       "apps/client-dashboard/project.json",
       "nx/core/project-json"
     ]
