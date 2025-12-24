@@ -9930,6 +9930,41 @@
     "type": "static"
   },
   {
+    "source": "npm:bullmq",
+    "target": "npm:cron-parser",
+    "type": "static"
+  },
+  {
+    "source": "npm:bullmq",
+    "target": "npm:ioredis",
+    "type": "static"
+  },
+  {
+    "source": "npm:bullmq",
+    "target": "npm:msgpackr",
+    "type": "static"
+  },
+  {
+    "source": "npm:bullmq",
+    "target": "npm:node-abort-controller",
+    "type": "static"
+  },
+  {
+    "source": "npm:bullmq",
+    "target": "npm:semver@7.7.3",
+    "type": "static"
+  },
+  {
+    "source": "npm:bullmq",
+    "target": "npm:tslib",
+    "type": "static"
+  },
+  {
+    "source": "npm:bullmq",
+    "target": "npm:uuid@11.1.0",
+    "type": "static"
+  },
+  {
     "source": "npm:bundle-name",
     "target": "npm:run-applescript",
     "type": "static"
@@ -14230,6 +14265,51 @@
     "type": "static"
   },
   {
+    "source": "npm:ioredis",
+    "target": "npm:@ioredis/commands",
+    "type": "static"
+  },
+  {
+    "source": "npm:ioredis",
+    "target": "npm:cluster-key-slot",
+    "type": "static"
+  },
+  {
+    "source": "npm:ioredis",
+    "target": "npm:debug",
+    "type": "static"
+  },
+  {
+    "source": "npm:ioredis",
+    "target": "npm:denque",
+    "type": "static"
+  },
+  {
+    "source": "npm:ioredis",
+    "target": "npm:lodash.defaults",
+    "type": "static"
+  },
+  {
+    "source": "npm:ioredis",
+    "target": "npm:lodash.isarguments",
+    "type": "static"
+  },
+  {
+    "source": "npm:ioredis",
+    "target": "npm:redis-errors",
+    "type": "static"
+  },
+  {
+    "source": "npm:ioredis",
+    "target": "npm:redis-parser",
+    "type": "static"
+  },
+  {
+    "source": "npm:ioredis",
+    "target": "npm:standard-as-callback",
+    "type": "static"
+  },
+  {
     "source": "npm:is-array-buffer",
     "target": "npm:call-bind",
     "type": "static"
@@ -16745,6 +16825,46 @@
     "type": "static"
   },
   {
+    "source": "npm:msgpackr",
+    "target": "npm:msgpackr-extract",
+    "type": "static"
+  },
+  {
+    "source": "npm:msgpackr-extract",
+    "target": "npm:node-gyp-build-optional-packages",
+    "type": "static"
+  },
+  {
+    "source": "npm:msgpackr-extract",
+    "target": "npm:@msgpackr-extract/msgpackr-extract-darwin-arm64",
+    "type": "static"
+  },
+  {
+    "source": "npm:msgpackr-extract",
+    "target": "npm:@msgpackr-extract/msgpackr-extract-darwin-x64",
+    "type": "static"
+  },
+  {
+    "source": "npm:msgpackr-extract",
+    "target": "npm:@msgpackr-extract/msgpackr-extract-linux-arm",
+    "type": "static"
+  },
+  {
+    "source": "npm:msgpackr-extract",
+    "target": "npm:@msgpackr-extract/msgpackr-extract-linux-arm64",
+    "type": "static"
+  },
+  {
+    "source": "npm:msgpackr-extract",
+    "target": "npm:@msgpackr-extract/msgpackr-extract-linux-x64",
+    "type": "static"
+  },
+  {
+    "source": "npm:msgpackr-extract",
+    "target": "npm:@msgpackr-extract/msgpackr-extract-win32-x64",
+    "type": "static"
+  },
+  {
     "source": "npm:multer",
     "target": "npm:append-field",
     "type": "static"
@@ -16977,6 +17097,11 @@
   {
     "source": "npm:whatwg-url@5.0.0",
     "target": "npm:webidl-conversions@3.0.1",
+    "type": "static"
+  },
+  {
+    "source": "npm:node-gyp-build-optional-packages",
+    "target": "npm:detect-libc@2.1.2",
     "type": "static"
   },
   {
@@ -17790,6 +17915,136 @@
     "type": "static"
   },
   {
+    "source": "npm:pino",
+    "target": "npm:@pinojs/redact",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino",
+    "target": "npm:atomic-sleep",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino",
+    "target": "npm:on-exit-leak-free",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino",
+    "target": "npm:pino-abstract-transport",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino",
+    "target": "npm:pino-std-serializers",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino",
+    "target": "npm:process-warning",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino",
+    "target": "npm:quick-format-unescaped",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino",
+    "target": "npm:real-require",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino",
+    "target": "npm:safe-stable-stringify",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino",
+    "target": "npm:sonic-boom",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino",
+    "target": "npm:thread-stream",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino-abstract-transport",
+    "target": "npm:split2",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino-pretty",
+    "target": "npm:colorette",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino-pretty",
+    "target": "npm:dateformat",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino-pretty",
+    "target": "npm:fast-copy",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino-pretty",
+    "target": "npm:fast-safe-stringify",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino-pretty",
+    "target": "npm:help-me",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino-pretty",
+    "target": "npm:joycon",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino-pretty",
+    "target": "npm:minimist",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino-pretty",
+    "target": "npm:on-exit-leak-free",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino-pretty",
+    "target": "npm:pino-abstract-transport@3.0.0",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino-pretty",
+    "target": "npm:pump",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino-pretty",
+    "target": "npm:secure-json-parse",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino-pretty",
+    "target": "npm:sonic-boom",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino-pretty",
+    "target": "npm:strip-json-comments@5.0.3",
+    "type": "static"
+  },
+  {
+    "source": "npm:pino-abstract-transport@3.0.0",
+    "target": "npm:split2",
+    "type": "static"
+  },
+  {
     "source": "npm:piscina",
     "target": "npm:@napi-rs/nice",
     "type": "static"
@@ -18540,6 +18795,16 @@
     "type": "static"
   },
   {
+    "source": "npm:pump",
+    "target": "npm:end-of-stream",
+    "type": "static"
+  },
+  {
+    "source": "npm:pump",
+    "target": "npm:once",
+    "type": "static"
+  },
+  {
     "source": "npm:qs",
     "target": "npm:side-channel",
     "type": "static"
@@ -18647,6 +18912,11 @@
   {
     "source": "npm:rechoir",
     "target": "npm:resolve",
+    "type": "static"
+  },
+  {
+    "source": "npm:redis-parser",
+    "target": "npm:redis-errors",
     "type": "static"
   },
   {
@@ -20590,6 +20860,11 @@
     "type": "static"
   },
   {
+    "source": "npm:sonic-boom",
+    "target": "npm:atomic-sleep",
+    "type": "static"
+  },
+  {
     "source": "npm:sort-keys",
     "target": "npm:is-plain-obj",
     "type": "static"
@@ -21522,6 +21797,11 @@
   {
     "source": "npm:thingies",
     "target": "npm:tslib",
+    "type": "static"
+  },
+  {
+    "source": "npm:thread-stream",
+    "target": "npm:real-require",
     "type": "static"
   },
   {

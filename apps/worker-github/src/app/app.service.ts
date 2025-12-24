@@ -8,7 +8,7 @@ export class AppService {
   private prisma = new PrismaClient();
 
   async runGithubScan(companyId: string) {
-    this.logger.log(`🚀 Démarrage du scan GitHub pour la compagnie: ${companyId}`);
+    this.logger.log(`🚀 Scan HTTP déclenché pour : ${companyId}`);
 
     const steampipe = new Client({
       connectionString: process.env.STEAMPIPE_URL || "postgresql://steampipe@localhost:9193/steampipe"
@@ -16,24 +16,16 @@ export class AppService {
 
     try {
       await steampipe.connect();
-      
-      const res = await steampipe.query(`
-        SELECT name, full_name, html_url, visibility 
-        FROM github_my_repository
-      `);
-
-      this.logger.log(`📦 ${res.rows.length} dépôts trouvés.`);
+      const res = await steampipe.query("SELECT name, url, visibility FROM github_my_repository");
 
       for (const repo of res.rows) {
         await this.prisma.asset.upsert({
-          where: {
-            companyId_externalId: { companyId, externalId: repo.html_url },
-          },
-          update: { name: repo.full_name, rawData: repo, lastSeen: new Date() },
+          where: { companyId_externalId: { companyId, externalId: repo.url } },
+          update: { name: repo.name, rawData: repo, lastSeen: new Date() },
           create: {
             companyId,
-            externalId: repo.html_url,
-            name: repo.full_name,
+            externalId: repo.url,
+            name: repo.name,
             type: 'REPOSITORY',
             provider: 'GITHUB',
             rawData: repo,
@@ -42,8 +34,8 @@ export class AppService {
       }
 
       return { success: true, count: res.rows.length };
-    } catch (error) {
-      this.logger.error(`❌ Erreur lors du scan: ${error.message}`);
+    } catch (error: any) {
+      this.logger.error(`❌ Erreur : ${error.message}`);
       throw error;
     } finally {
       await steampipe.end();

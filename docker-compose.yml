@@ -1,4 +1,5 @@
 services:
+  # 1. Base de données (Stockage permanent)
   postgres:
     image: postgres:15
     container_name: postgres
@@ -6,6 +7,8 @@ services:
       - POSTGRES_USER=johndoe
       - POSTGRES_PASSWORD=randompassword
       - POSTGRES_DB=auditdb
+    ports:
+      - "5432:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U johndoe -d auditdb"]
       interval: 5s
@@ -14,8 +17,22 @@ services:
     networks:
       - toly-network
 
+  # 2. Broker de messages (Orchestration BullMQ)
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - toly-network
+
+  # 3. Scanner de Sécurité (Steampipe)
   steampipe:
-    # CORRECTION : On construit notre image propre au lieu d'utiliser la latest brute
     build:
       context: .
       dockerfile: Dockerfile.steampipe
@@ -24,11 +41,9 @@ services:
       - STEAMPIPE_DATABASE_AUTH=false
       - GITHUB_TOKEN=${GITHUB_TOKEN}
     volumes:
-      # On garde SEULEMENT la config en externe (c'est normal en dev)
       - ./steampipe_config/github.spc:/home/steampipe/.steampipe/config/github.spc:ro
-      # SUPPRESSION du volume ./steampipe_plugins (plus besoin, c'est dans l'image !)
     healthcheck:
-      test: ["CMD-SHELL", "steampipe query 'select 1'"]
+      test: ["CMD-SHELL", "steampipe query 'select 1' --quiet"]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -38,6 +53,7 @@ services:
     networks:
       - toly-network
 
+  # 4. Intelligence Métier (Worker GitHub avec BullMQ)
   worker-github:
     build:
       context: .
@@ -46,14 +62,33 @@ services:
     environment:
       - DATABASE_URL=postgresql://johndoe:randompassword@postgres:5432/auditdb?schema=public
       - STEAMPIPE_URL=postgresql://steampipe@steampipe:9193/steampipe
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
     depends_on:
       postgres:
         condition: service_healthy
       steampipe:
         condition: service_healthy
+      redis:
+        condition: service_healthy
     networks:
       - toly-network
     restart: on-failure
+
+  # 5. Interface API & Data (NocoDB)
+  nocodb:
+    image: nocodb/nocodb:latest
+    container_name: nocodb
+    restart: always
+    environment:
+      - NC_DB=pg://postgres:5432?u=johndoe&p=randompassword&d=auditdb
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - toly-network
 
 networks:
   toly-network:

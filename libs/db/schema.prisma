@@ -1,5 +1,3 @@
-// libs/db/schema.prisma
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -16,18 +14,18 @@ model Company {
   name      String
   createdAt DateTime @default(now())
   
-  // Relations
   users        User[]
   integrations Integration[]
   assets       Asset[]
   scanResults  ScanResult[]
+  frameworks   CompanyFramework[]
 }
 
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
-  clerkId   String   @unique // Lien avec l'Auth Clerk
-  role      String   @default("MEMBER") // "ADMIN", "MEMBER"
+  clerkId   String   @unique
+  role      String   @default("MEMBER")
   
   companyId String
   company   Company  @relation(fields: [companyId], references: [id])
@@ -37,47 +35,44 @@ model User {
 
 model Integration {
   id        String   @id @default(uuid())
-  provider  String   // "GOOGLE_WORKSPACE", "AWS", "GITHUB", "FLEET"
-  status    String   @default("DISCONNECTED") // "CONNECTED", "ERROR"
-  config    Json?    // Stockage crypté des clés si besoin (ou ref vers env)
+  provider  String   
+  status    String   @default("DISCONNECTED")
+  config    Json?    
   lastSync  DateTime?
 
   companyId String
   company   Company  @relation(fields: [companyId], references: [id])
 }
 
-// --- 3. INVENTAIRE (Ce que Steampipe trouve) ---
+// --- 3. INVENTAIRE (Assets - La cible du scan) ---
 
 model Asset {
   id          String   @id @default(uuid())
+  externalId  String   
+  name        String   
+  type        String   
+  provider    String   
+  rawData     Json     
   
-  externalId  String   // ID unique chez le provider (ex: User ID Google)
-  name        String   // ex: "jean.dupont@company.com" ou "prod-db-01"
-  type        String   // "USER", "COMPUTE", "DATABASE", "REPOSITORY", "DEVICE", "TICKET", "APP"
-  provider    String   // "GOOGLE", "AWS", "GITHUB", "VERCEL", etc.
-  
-  rawData     Json     // La donnée brute renvoyée par Steampipe
-  
-  // METADONNEES DE SYNCHRO (C'est ici que tu avais l'erreur)
-  lastSeen    DateTime @default(now()) // Quand l'a-t-on vu pour la dernière fois ?
+  lastSeen    DateTime @default(now())
   createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt      // Se met à jour seul quand rawData change
+  updatedAt   DateTime @updatedAt      
 
   companyId   String
   company     Company  @relation(fields: [companyId], references: [id])
   
-  scanResults ScanResult[] // Historique des audits sur cet asset
+  scanResults ScanResult[] 
 
-  @@unique([companyId, externalId]) // Pas de doublons dans une même boite
+  @@unique([companyId, externalId])
 }
 
-// --- 4. RÉSULTATS D'AUDIT (Le Vert/Rouge du Dashboard) ---
+// --- 4. RÉSULTATS D'AUDIT (Evidence Collection) ---
 
 model ScanResult {
   id          String   @id @default(uuid())
-  checkId     String   // ex: "NIS2-MFA-001"
+  checkId     String   // Identifiant technique du test (ex: "github_repo_private")
   status      String   // "PASS", "FAIL", "IGNORED"
-  evidence    String?  // Message d'erreur ou lien preuve
+  evidence    Json?    // Snapshot JSON du problème pour l'auditeur
   lastChecked DateTime @default(now())
 
   assetId     String
@@ -85,4 +80,48 @@ model ScanResult {
 
   companyId   String
   company     Company  @relation(fields: [companyId], references: [id])
+}
+
+// --- 5. STRUCTURE GRC (Le Mapping Vanta) ---
+
+model Framework {
+  id           String        @id @default(uuid())
+  name         String        // "SOC2", "ISO27001", "CIS"
+  description  String?
+  requirements Requirement[]
+  companies    CompanyFramework[]
+}
+
+model CompanyFramework {
+  id          String    @id @default(uuid())
+  companyId   String
+  frameworkId String
+  company     Company   @relation(fields: [companyId], references: [id])
+  framework   Framework @relation(fields: [frameworkId], references: [id])
+  status      Float     @default(0) // % de complétion global
+}
+
+model Requirement {
+  id          String   @id @default(uuid())
+  code        String   // "CC6.1" ou "A.5.15"
+  description String?
+  frameworkId String
+  framework   Framework @relation(fields: [frameworkId], references: [id])
+  controls    Control[]
+}
+
+model Control {
+  id           String   @id @default(uuid())
+  name         String   // "Enforce MFA on GitHub"
+  description  String?
+  requirementId String
+  requirement  Requirement @relation(fields: [requirementId], references: [id])
+  automatedTests AutomatedTest[]
+}
+
+model AutomatedTest {
+  id        String   @id @default(uuid())
+  checkId   String   // Lien technique avec ScanResult.checkId
+  controlId String
+  control   Control  @relation(fields: [controlId], references: [id])
 }

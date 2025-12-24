@@ -1,25 +1,25 @@
 Daemon process terminated and closed the connection
 
 Messages from the log:
-Time for 'plugin worker 110383 code loading' 25.542489000000018
-Time for 'plugin worker 110407 code loading' 31.875080999999994
-Time for 'plugin worker 110402 code loading' 39.51256599999999
-[NX v22.1.3 Daemon Server] - 2025-12-22T14:06:03.357Z - Established a connection. Number of open connections: 2
-[NX v22.1.3 Daemon Server] - 2025-12-22T14:06:03.357Z - Closed a connection. Number of open connections: 1
-Time for 'plugin worker 110414 code loading' 38.66539799999998
-[NX v22.1.3 Daemon Server] - 2025-12-22T14:06:03.430Z - Closed a connection. Number of open connections: 0
-[NX v22.1.3 Daemon Server] - 2025-12-22T14:06:03.554Z - Established a connection. Number of open connections: 1
-[NX v22.1.3 Daemon Server] - 2025-12-22T14:06:03.555Z - Closed a connection. Number of open connections: 0
-[NX v22.1.3 Daemon Server] - 2025-12-22T14:06:03.556Z - Established a connection. Number of open connections: 1
-[NX v22.1.3 Daemon Server] - 2025-12-22T14:06:03.566Z - Received raw message of length 32
-[NX v22.1.3 Daemon Server] - 2025-12-22T14:06:03.567Z - Received json message of type REQUEST_PROJECT_GRAPH
-[NX v22.1.3 Daemon Server] - 2025-12-22T14:06:03.567Z - [REQUEST]: Client Request for Project Graph Received
-[NX v22.1.3 Daemon Server] - 2025-12-22T14:06:04.143Z - Time taken for 'Load Nx Plugin: /home/hibo/audit-tool-monorepo/node_modules/nx/src/plugins/package-json' 1183.94923ms
-[NX v22.1.3 Daemon Server] - 2025-12-22T14:06:04.173Z - Time taken for 'Load Nx Plugin: /home/hibo/audit-tool-monorepo/node_modules/nx/src/plugins/project-json/build-nodes/project-json' 1213.772719ms
-[NX v22.1.3 Daemon Server] - 2025-12-22T14:06:04.199Z - Time taken for 'loadDefaultNxPlugins' 1246.807842ms
-[NX v22.1.3 Daemon Server] - 2025-12-22T14:06:04.540Z - Closed a connection. Number of open connections: 0
-[NX v22.1.3 Daemon Server] - 2025-12-22T14:06:04.541Z - [WATCHER]: Stopping the watcher for /home/hibo/audit-tool-monorepo (sources)
-[NX v22.1.3 Daemon Server] - 2025-12-22T14:06:04.544Z - [WATCHER]: Stopping the watcher for /home/hibo/audit-tool-monorepo (outputs)
+Time for 'plugin worker 764649 code loading' 17.570379000000003
+Time for 'plugin worker 764656 code loading' 51.26323500000001
+[NX v22.1.3 Daemon Server] - 2025-12-24T12:56:28.811Z - Established a connection. Number of open connections: 2
+[NX v22.1.3 Daemon Server] - 2025-12-24T12:56:28.816Z - Closed a connection. Number of open connections: 1
+Time for 'plugin worker 764658 code loading' 52.63519500000004
+[NX v22.1.3 Daemon Server] - 2025-12-24T12:56:28.909Z - Closed a connection. Number of open connections: 0
+[NX v22.1.3 Daemon Server] - 2025-12-24T12:56:28.979Z - Established a connection. Number of open connections: 1
+[NX v22.1.3 Daemon Server] - 2025-12-24T12:56:28.979Z - Closed a connection. Number of open connections: 0
+[NX v22.1.3 Daemon Server] - 2025-12-24T12:56:28.981Z - Established a connection. Number of open connections: 1
+[NX v22.1.3 Daemon Server] - 2025-12-24T12:56:28.997Z - Received raw message of length 32
+[NX v22.1.3 Daemon Server] - 2025-12-24T12:56:28.997Z - Received json message of type REQUEST_PROJECT_GRAPH
+[NX v22.1.3 Daemon Server] - 2025-12-24T12:56:28.997Z - [REQUEST]: Client Request for Project Graph Received
+[NX v22.1.3 Daemon Server] - 2025-12-24T12:56:29.698Z - Time taken for 'Load Nx Plugin: @nx/vitest' 1337.564408ms
+[NX v22.1.3 Daemon Server] - 2025-12-24T12:56:29.766Z - Time taken for 'Load Nx Plugin: /home/hibo/audit-tool-monorepo/node_modules/nx/src/plugins/package-json' 1413.537048ms
+[NX v22.1.3 Daemon Server] - 2025-12-24T12:56:29.871Z - Time taken for 'Load Nx Plugin: /home/hibo/audit-tool-monorepo/node_modules/nx/src/plugins/project-json/build-nodes/project-json' 1517.893717ms
+[NX v22.1.3 Daemon Server] - 2025-12-24T12:56:29.908Z - Time taken for 'Load Nx Plugin: @nx/jest/plugin' 1550.1165419999998ms
+[NX v22.1.3 Daemon Server] - 2025-12-24T12:56:29.918Z - Time taken for 'loadDefaultNxPlugins' 1565.8653339999998ms
+[NX v22.1.3 Daemon Server] - 2025-12-24T12:56:30.172Z - Time taken for 'Load Nx Plugin: @nx/vite/plugin' 1814.157709ms
+[NX v22.1.3 Daemon Server] - 2025-12-24T12:56:30.242Z - Time taken for 'Load Nx Plugin: @nx/playwright/plugin' 1884.6505989999998ms
 
 
 

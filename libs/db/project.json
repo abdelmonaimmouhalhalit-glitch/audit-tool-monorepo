@@ -1,0 +1,26 @@
+{
+  "name": "db",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/db",
+  "targets": {
+    "generate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx prisma generate --schema=libs/db/schema.prisma"
+      }
+    },
+    "push": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx prisma db push --schema=libs/db/schema.prisma"
+      }
+    },
+    "seed": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "ts-node -O '{\"module\":\"commonjs\"}' libs/db/seed.ts"
+      }
+    }
+  }
+}

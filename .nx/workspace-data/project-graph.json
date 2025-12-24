@@ -15,7 +15,7 @@
             "inputs": [
               "default",
               "^default",
-              "{workspaceRoot}/eslint.config.mjs",
+              "{workspaceRoot}/eslint.base.config.mjs",
               "{workspaceRoot}/apps/service-remediation-e2e/eslint.config.mjs",
               "{workspaceRoot}/tools/eslint-rules/**/*",
               {
@@ -86,7 +86,7 @@
             "inputs": [
               "default",
               "^default",
-              "{workspaceRoot}/eslint.config.mjs",
+              "{workspaceRoot}/eslint.base.config.mjs",
               "{workspaceRoot}/apps/service-normalizer-e2e/eslint.config.mjs",
               "{workspaceRoot}/tools/eslint-rules/**/*",
               {
@@ -157,7 +157,7 @@
             "inputs": [
               "default",
               "^default",
-              "{workspaceRoot}/eslint.config.mjs",
+              "{workspaceRoot}/eslint.base.config.mjs",
               "{workspaceRoot}/apps/worker-gworkspace-e2e/eslint.config.mjs",
               "{workspaceRoot}/tools/eslint-rules/**/*",
               {
@@ -228,7 +228,7 @@
             "inputs": [
               "default",
               "^default",
-              "{workspaceRoot}/eslint.config.mjs",
+              "{workspaceRoot}/eslint.base.config.mjs",
               "{workspaceRoot}/apps/client-dashboard-e2e/eslint.config.mjs",
               "{workspaceRoot}/tools/eslint-rules/**/*",
               {
@@ -462,7 +462,7 @@
             "inputs": [
               "default",
               "^default",
-              "{workspaceRoot}/eslint.config.mjs",
+              "{workspaceRoot}/eslint.base.config.mjs",
               "{workspaceRoot}/apps/service-remediation/eslint.config.mjs",
               "{workspaceRoot}/tools/eslint-rules/**/*",
               {
@@ -737,7 +737,7 @@
             "inputs": [
               "default",
               "^default",
-              "{workspaceRoot}/eslint.config.mjs",
+              "{workspaceRoot}/eslint.base.config.mjs",
               "{workspaceRoot}/apps/service-normalizer/eslint.config.mjs",
               "{workspaceRoot}/tools/eslint-rules/**/*",
               {
@@ -997,6 +997,77 @@
         "implicitDependencies": []
       }
     },
+    "worker-github-e2e": {
+      "name": "worker-github-e2e",
+      "type": "e2e",
+      "data": {
+        "root": "apps/worker-github-e2e",
+        "targets": {
+          "lint": {
+            "cache": true,
+            "options": {
+              "cwd": "apps/worker-github-e2e",
+              "command": "eslint ."
+            },
+            "inputs": [
+              "default",
+              "^default",
+              "{workspaceRoot}/eslint.base.config.mjs",
+              "{workspaceRoot}/apps/worker-github-e2e/eslint.config.mjs",
+              "{workspaceRoot}/tools/eslint-rules/**/*",
+              {
+                "externalDependencies": [
+                  "eslint"
+                ]
+              }
+            ],
+            "outputs": [
+              "{options.outputFile}"
+            ],
+            "metadata": {
+              "technologies": [
+                "eslint"
+              ],
+              "description": "Runs ESLint on project",
+              "help": {
+                "command": "npx eslint --help",
+                "example": {
+                  "options": {
+                    "max-warnings": 0
+                  }
+                }
+              }
+            },
+            "executor": "nx:run-commands",
+            "configurations": {},
+            "parallelism": true
+          },
+          "e2e": {
+            "executor": "@nx/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/{e2eProjectRoot}"
+            ],
+            "options": {
+              "jestConfig": "apps/worker-github-e2e/jest.config.cts",
+              "passWithNoTests": true
+            },
+            "dependsOn": [
+              "worker-github:build",
+              "worker-github:serve"
+            ],
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "name": "worker-github-e2e",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "application",
+        "implicitDependencies": [
+          "worker-github"
+        ],
+        "tags": []
+      }
+    },
     "worker-gworkspace": {
       "name": "worker-gworkspace",
       "type": "app",
@@ -1012,7 +1083,7 @@
             "inputs": [
               "default",
               "^default",
-              "{workspaceRoot}/eslint.config.mjs",
+              "{workspaceRoot}/eslint.base.config.mjs",
               "{workspaceRoot}/apps/worker-gworkspace/eslint.config.mjs",
               "{workspaceRoot}/tools/eslint-rules/**/*",
               {
@@ -1371,7 +1442,7 @@
             "inputs": [
               "default",
               "^default",
-              "{workspaceRoot}/eslint.config.mjs",
+              "{workspaceRoot}/eslint.base.config.mjs",
               "{workspaceRoot}/apps/client-dashboard/eslint.config.mjs",
               "{workspaceRoot}/tools/eslint-rules/**/*",
               {
@@ -1479,7 +1550,7 @@
             "inputs": [
               "default",
               "^default",
-              "{workspaceRoot}/eslint.config.mjs",
+              "{workspaceRoot}/eslint.base.config.mjs",
               "{workspaceRoot}/apps/api-gateway-e2e/eslint.config.mjs",
               "{workspaceRoot}/tools/eslint-rules/**/*",
               {
@@ -1535,6 +1606,279 @@
         "tags": []
       }
     },
+    "worker-github": {
+      "name": "worker-github",
+      "type": "app",
+      "data": {
+        "root": "apps/worker-github",
+        "targets": {
+          "lint": {
+            "cache": true,
+            "options": {
+              "cwd": "apps/worker-github",
+              "command": "eslint ."
+            },
+            "inputs": [
+              "default",
+              "^default",
+              "{workspaceRoot}/eslint.base.config.mjs",
+              "{workspaceRoot}/apps/worker-github/eslint.config.mjs",
+              "{workspaceRoot}/tools/eslint-rules/**/*",
+              {
+                "externalDependencies": [
+                  "eslint"
+                ]
+              }
+            ],
+            "outputs": [
+              "{options.outputFile}"
+            ],
+            "metadata": {
+              "technologies": [
+                "eslint"
+              ],
+              "description": "Runs ESLint on project",
+              "help": {
+                "command": "npx eslint --help",
+                "example": {
+                  "options": {
+                    "max-warnings": 0
+                  }
+                }
+              }
+            },
+            "executor": "nx:run-commands",
+            "configurations": {},
+            "parallelism": true
+          },
+          "test": {
+            "metadata": {
+              "technologies": [
+                "jest"
+              ],
+              "description": "Run Jest Tests",
+              "help": {
+                "command": "npx jest --help",
+                "example": {
+                  "options": {
+                    "coverage": true
+                  }
+                }
+              }
+            },
+            "cache": true,
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js",
+              {
+                "externalDependencies": [
+                  "jest"
+                ]
+              }
+            ],
+            "outputs": [
+              "{workspaceRoot}/coverage/apps/worker-github"
+            ],
+            "executor": "nx:run-commands",
+            "options": {
+              "cwd": "apps/worker-github",
+              "env": {
+                "TS_NODE_COMPILER_OPTIONS": "{\"moduleResolution\":\"node10\",\"module\":\"commonjs\",\"customConditions\":null}"
+              },
+              "command": "jest",
+              "passWithNoTests": true
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "build": {
+            "cache": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production",
+              {
+                "externalDependencies": [
+                  "webpack-cli"
+                ]
+              }
+            ],
+            "outputs": [
+              "{workspaceRoot}/dist/apps/worker-github"
+            ],
+            "metadata": {
+              "technologies": [
+                "webpack"
+              ],
+              "description": "Runs Webpack build",
+              "help": {
+                "command": "npx webpack-cli build --help",
+                "example": {
+                  "options": {
+                    "json": "stats.json"
+                  },
+                  "args": [
+                    "--profile"
+                  ]
+                }
+              }
+            },
+            "executor": "nx:run-commands",
+            "options": {
+              "cwd": "apps/worker-github",
+              "args": [
+                "--node-env=production"
+              ],
+              "command": "webpack-cli build"
+            },
+            "configurations": {
+              "development": {
+                "args": [
+                  "--node-env=development"
+                ]
+              }
+            },
+            "parallelism": true
+          },
+          "serve": {
+            "continuous": true,
+            "executor": "@nx/js:node",
+            "defaultConfiguration": "development",
+            "dependsOn": [
+              "build"
+            ],
+            "options": {
+              "buildTarget": "worker-github:build",
+              "runBuildTargetDependencies": false
+            },
+            "configurations": {
+              "development": {
+                "buildTarget": "worker-github:build:development"
+              },
+              "production": {
+                "buildTarget": "worker-github:build:production"
+              }
+            },
+            "parallelism": true
+          },
+          "preview": {
+            "continuous": true,
+            "options": {
+              "cwd": "apps/worker-github",
+              "args": [
+                "--node-env=production"
+              ],
+              "command": "webpack-cli serve"
+            },
+            "metadata": {
+              "technologies": [
+                "webpack"
+              ],
+              "description": "Starts Webpack dev server in production mode",
+              "help": {
+                "command": "npx webpack-cli serve --help",
+                "example": {
+                  "options": {
+                    "args": [
+                      "--client-progress",
+                      "--history-api-fallback "
+                    ]
+                  }
+                }
+              }
+            },
+            "executor": "nx:run-commands",
+            "configurations": {},
+            "parallelism": true
+          },
+          "serve-static": {
+            "continuous": true,
+            "dependsOn": [
+              "build"
+            ],
+            "executor": "@nx/web:file-server",
+            "options": {
+              "buildTarget": "build",
+              "spa": true
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "build-deps": {
+            "dependsOn": [
+              "^build"
+            ],
+            "configurations": {},
+            "options": {},
+            "parallelism": true,
+            "executor": "nx:noop"
+          },
+          "watch-deps": {
+            "continuous": true,
+            "dependsOn": [
+              "build-deps"
+            ],
+            "executor": "nx:run-commands",
+            "options": {
+              "command": "npx nx watch --projects worker-github --includeDependentProjects -- npx nx build-deps worker-github"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "prune-lockfile": {
+            "dependsOn": [
+              "build"
+            ],
+            "cache": true,
+            "executor": "@nx/js:prune-lockfile",
+            "outputs": [
+              "{workspaceRoot}/dist/apps/worker-github/package.json",
+              "{workspaceRoot}/dist/apps/worker-github/package-lock.json"
+            ],
+            "options": {
+              "buildTarget": "build"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "copy-workspace-modules": {
+            "dependsOn": [
+              "build"
+            ],
+            "cache": true,
+            "outputs": [
+              "{workspaceRoot}/dist/apps/worker-github/workspace_modules"
+            ],
+            "executor": "@nx/js:copy-workspace-modules",
+            "options": {
+              "buildTarget": "build"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "prune": {
+            "dependsOn": [
+              "prune-lockfile",
+              "copy-workspace-modules"
+            ],
+            "executor": "nx:noop",
+            "configurations": {},
+            "options": {},
+            "parallelism": true
+          }
+        },
+        "projectType": "application",
+        "metadata": {},
+        "name": "worker-github",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "apps/worker-github/src",
+        "tags": [],
+        "implicitDependencies": []
+      }
+    },
     "audit-engine": {
       "name": "audit-engine",
       "type": "lib",
@@ -1550,7 +1894,7 @@
             "inputs": [
               "default",
               "^default",
-              "{workspaceRoot}/eslint.config.mjs",
+              "{workspaceRoot}/eslint.base.config.mjs",
               "{workspaceRoot}/libs/audit-engine/eslint.config.mjs",
               "{workspaceRoot}/tools/eslint-rules/**/*",
               {
@@ -1607,7 +1951,7 @@
             "inputs": [
               "default",
               "^default",
-              "{workspaceRoot}/eslint.config.mjs",
+              "{workspaceRoot}/eslint.base.config.mjs",
               "{workspaceRoot}/libs/shared-types/eslint.config.mjs",
               "{workspaceRoot}/tools/eslint-rules/**/*",
               {
@@ -1701,7 +2045,7 @@
             "inputs": [
               "default",
               "^default",
-              "{workspaceRoot}/eslint.config.mjs",
+              "{workspaceRoot}/eslint.base.config.mjs",
               "{workspaceRoot}/apps/api-gateway/eslint.config.mjs",
               "{workspaceRoot}/tools/eslint-rules/**/*",
               {
@@ -2012,7 +2356,7 @@
             "inputs": [
               "default",
               "^default",
-              "{workspaceRoot}/eslint.config.mjs",
+              "{workspaceRoot}/eslint.base.config.mjs",
               "{workspaceRoot}/libs/api-client/eslint.config.mjs",
               "{workspaceRoot}/tools/eslint-rules/**/*",
               {
@@ -2094,6 +2438,175 @@
         "implicitDependencies": []
       }
     },
+    "scheduler": {
+      "name": "scheduler",
+      "type": "lib",
+      "data": {
+        "root": "libs/scheduler",
+        "targets": {
+          "lint": {
+            "cache": true,
+            "options": {
+              "cwd": "libs/scheduler",
+              "command": "eslint ."
+            },
+            "inputs": [
+              "default",
+              "^default",
+              "{workspaceRoot}/eslint.base.config.mjs",
+              "{workspaceRoot}/libs/scheduler/eslint.config.mjs",
+              "{workspaceRoot}/tools/eslint-rules/**/*",
+              {
+                "externalDependencies": [
+                  "eslint"
+                ]
+              }
+            ],
+            "outputs": [
+              "{options.outputFile}"
+            ],
+            "metadata": {
+              "technologies": [
+                "eslint"
+              ],
+              "description": "Runs ESLint on project",
+              "help": {
+                "command": "npx eslint --help",
+                "example": {
+                  "options": {
+                    "max-warnings": 0
+                  }
+                }
+              }
+            },
+            "executor": "nx:run-commands",
+            "configurations": {},
+            "parallelism": true
+          },
+          "test": {
+            "options": {
+              "cwd": "libs/scheduler",
+              "env": {
+                "TS_NODE_COMPILER_OPTIONS": "{\"moduleResolution\":\"node10\",\"module\":\"commonjs\",\"customConditions\":null}"
+              },
+              "command": "jest"
+            },
+            "metadata": {
+              "technologies": [
+                "jest"
+              ],
+              "description": "Run Jest Tests",
+              "help": {
+                "command": "npx jest --help",
+                "example": {
+                  "options": {
+                    "coverage": true
+                  }
+                }
+              }
+            },
+            "cache": true,
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js",
+              {
+                "externalDependencies": [
+                  "jest"
+                ]
+              }
+            ],
+            "outputs": [
+              "{workspaceRoot}/coverage/libs/scheduler"
+            ],
+            "executor": "nx:run-commands",
+            "configurations": {},
+            "parallelism": true
+          },
+          "build": {
+            "executor": "@nx/js:tsc",
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "options": {
+              "outputPath": "dist/libs/scheduler",
+              "tsConfig": "libs/scheduler/tsconfig.lib.json",
+              "packageJson": "libs/scheduler/package.json",
+              "main": "libs/scheduler/src/index.ts",
+              "assets": [
+                "libs/scheduler/*.md"
+              ]
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ]
+          }
+        },
+        "name": "scheduler",
+        "tags": [
+          "npm:private"
+        ],
+        "metadata": {
+          "targetGroups": {},
+          "js": {
+            "packageName": "@audit-tool-monorepo/scheduler",
+            "packageVersion": "0.0.1",
+            "packageMain": "./src/index.js",
+            "isInPackageManagerWorkspaces": false
+          }
+        },
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "libs/scheduler/src",
+        "projectType": "library",
+        "implicitDependencies": []
+      }
+    },
+    "db": {
+      "name": "db",
+      "type": "lib",
+      "data": {
+        "root": "libs/db",
+        "name": "db",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "library",
+        "sourceRoot": "libs/db",
+        "targets": {
+          "generate": {
+            "executor": "nx:run-commands",
+            "options": {
+              "command": "npx prisma generate --schema=libs/db/schema.prisma"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "push": {
+            "executor": "nx:run-commands",
+            "options": {
+              "command": "npx prisma db push --schema=libs/db/schema.prisma"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "seed": {
+            "executor": "nx:run-commands",
+            "options": {
+              "command": "ts-node -O '{\"module\":\"commonjs\"}' libs/db/seed.ts"
+            },
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": [],
+        "tags": []
+      }
+    },
     "libs": {
       "name": "libs",
       "type": "lib",
@@ -2109,7 +2622,7 @@
             "inputs": [
               "default",
               "^default",
-              "{workspaceRoot}/eslint.config.mjs",
+              "{workspaceRoot}/eslint.base.config.mjs",
               "{workspaceRoot}/libs/eslint.config.mjs",
               "{workspaceRoot}/tools/eslint-rules/**/*",
               {
@@ -2183,6 +2696,57 @@
         "sourceRoot": "libs/src",
         "projectType": "library",
         "implicitDependencies": []
+      }
+    },
+    "@audit-tool-monorepo/source": {
+      "name": "@audit-tool-monorepo/source",
+      "type": "app",
+      "data": {
+        "root": ".",
+        "targets": {
+          "lint": {
+            "cache": true,
+            "options": {
+              "cwd": ".",
+              "command": "eslint ./src"
+            },
+            "inputs": [
+              "default",
+              "^default",
+              "{workspaceRoot}/eslint.base.config.mjs",
+              "{workspaceRoot}/eslint.config.mjs",
+              "{workspaceRoot}/tools/eslint-rules/**/*",
+              {
+                "externalDependencies": [
+                  "eslint"
+                ]
+              }
+            ],
+            "outputs": [
+              "{options.outputFile}"
+            ],
+            "metadata": {
+              "technologies": [
+                "eslint"
+              ],
+              "description": "Runs ESLint on project",
+              "help": {
+                "command": "npx eslint --help",
+                "example": {
+                  "options": {
+                    "max-warnings": 0
+                  }
+                }
+              }
+            },
+            "executor": "nx:run-commands",
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "name": "@audit-tool-monorepo/source",
+        "implicitDependencies": [],
+        "tags": []
       }
     }
   },
@@ -4284,6 +4848,15 @@
         "hash": "sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw=="
       }
     },
+    "npm:@ioredis/commands": {
+      "type": "npm",
+      "name": "npm:@ioredis/commands",
+      "data": {
+        "version": "1.4.0",
+        "packageName": "@ioredis/commands",
+        "hash": "sha512-aFT2yemJJo+TZCmieA7qnYGQooOS7QfNmYrzGtsYd3g9j5iDP8AimYYAesf79ohjbLG12XxC4nG5DyEnC88AsQ=="
+      }
+    },
     "npm:@isaacs/balanced-match": {
       "type": "npm",
       "name": "npm:@isaacs/balanced-match",
@@ -5056,6 +5629,60 @@
         "version": "0.21.6",
         "packageName": "@module-federation/webpack-bundler-runtime",
         "hash": "sha512-7zIp3LrcWbhGuFDTUMLJ2FJvcwjlddqhWGxi/MW3ur1a+HaO8v5tF2nl+vElKmbG1DFLU/52l3PElVcWf/YcsQ=="
+      }
+    },
+    "npm:@msgpackr-extract/msgpackr-extract-darwin-arm64": {
+      "type": "npm",
+      "name": "npm:@msgpackr-extract/msgpackr-extract-darwin-arm64",
+      "data": {
+        "version": "3.0.3",
+        "packageName": "@msgpackr-extract/msgpackr-extract-darwin-arm64",
+        "hash": "sha512-QZHtlVgbAdy2zAqNA9Gu1UpIuI8Xvsd1v8ic6B2pZmeFnFcMWiPLfWXh7TVw4eGEZ/C9TH281KwhVoeQUKbyjw=="
+      }
+    },
+    "npm:@msgpackr-extract/msgpackr-extract-darwin-x64": {
+      "type": "npm",
+      "name": "npm:@msgpackr-extract/msgpackr-extract-darwin-x64",
+      "data": {
+        "version": "3.0.3",
+        "packageName": "@msgpackr-extract/msgpackr-extract-darwin-x64",
+        "hash": "sha512-mdzd3AVzYKuUmiWOQ8GNhl64/IoFGol569zNRdkLReh6LRLHOXxU4U8eq0JwaD8iFHdVGqSy4IjFL4reoWCDFw=="
+      }
+    },
+    "npm:@msgpackr-extract/msgpackr-extract-linux-arm": {
+      "type": "npm",
+      "name": "npm:@msgpackr-extract/msgpackr-extract-linux-arm",
+      "data": {
+        "version": "3.0.3",
+        "packageName": "@msgpackr-extract/msgpackr-extract-linux-arm",
+        "hash": "sha512-fg0uy/dG/nZEXfYilKoRe7yALaNmHoYeIoJuJ7KJ+YyU2bvY8vPv27f7UKhGRpY6euFYqEVhxCFZgAUNQBM3nw=="
+      }
+    },
+    "npm:@msgpackr-extract/msgpackr-extract-linux-arm64": {
+      "type": "npm",
+      "name": "npm:@msgpackr-extract/msgpackr-extract-linux-arm64",
+      "data": {
+        "version": "3.0.3",
+        "packageName": "@msgpackr-extract/msgpackr-extract-linux-arm64",
+        "hash": "sha512-YxQL+ax0XqBJDZiKimS2XQaf+2wDGVa1enVRGzEvLLVFeqa5kx2bWbtcSXgsxjQB7nRqqIGFIcLteF/sHeVtQg=="
+      }
+    },
+    "npm:@msgpackr-extract/msgpackr-extract-linux-x64": {
+      "type": "npm",
+      "name": "npm:@msgpackr-extract/msgpackr-extract-linux-x64",
+      "data": {
+        "version": "3.0.3",
+        "packageName": "@msgpackr-extract/msgpackr-extract-linux-x64",
+        "hash": "sha512-cvwNfbP07pKUfq1uH+S6KJ7dT9K8WOE4ZiAcsrSes+UY55E/0jLYc+vq+DO7jlmqRb5zAggExKm0H7O/CBaesg=="
+      }
+    },
+    "npm:@msgpackr-extract/msgpackr-extract-win32-x64": {
+      "type": "npm",
+      "name": "npm:@msgpackr-extract/msgpackr-extract-win32-x64",
+      "data": {
+        "version": "3.0.3",
+        "packageName": "@msgpackr-extract/msgpackr-extract-win32-x64",
+        "hash": "sha512-x0fWaQtYp4E6sktbsdAqnehxDgEc/VwM7uLsRCYWaiGu0ykYdZPiS8zCWdnjHwyiumousxfBm4SO31eXqwEZhQ=="
       }
     },
     "npm:@napi-rs/nice": {
@@ -6678,6 +7305,15 @@
         "hash": "sha512-3nVv+e2FQwsW8Aw6qTU6f+1rfcJ3hrcnvH/mu9i8YhxO+9sqbOfpL8m6PbET5+xKOlz/VSbp0RoYWYCtIsnmuA=="
       }
     },
+    "npm:@pinojs/redact": {
+      "type": "npm",
+      "name": "npm:@pinojs/redact",
+      "data": {
+        "version": "0.4.0",
+        "packageName": "@pinojs/redact",
+        "hash": "sha512-k2ENnmBugE/rzQfEcdWHcCY+/FM3VLzH9cYEsbdsoqrvzAKRhUZeRNhAZvB8OitQJ1TBed3yqWtdjzS6wJKBwg=="
+      }
+    },
     "npm:@pkgjs/parseargs": {
       "type": "npm",
       "name": "npm:@pkgjs/parseargs",
@@ -8109,6 +8745,15 @@
         "hash": "sha512-RmhMd/wD+CF8Dfo+cVIy3RR5cl8CyfXQ0tGgW6XBL8L4LM/UTEbNXYRbLwU6w+CgrKBNbrQWt4FUtTfaU5jSYQ=="
       }
     },
+    "npm:@types/pino": {
+      "type": "npm",
+      "name": "npm:@types/pino",
+      "data": {
+        "version": "7.0.4",
+        "packageName": "@types/pino",
+        "hash": "sha512-yKw1UbZOTe7vP1xMQT+oz3FexwgIpBTrM+AC62vWgAkNRULgLTJWfYX+H5/sKPm8VXFbIcXkC3VZPyuaNioZFg=="
+      }
+    },
     "npm:@types/qs": {
       "type": "npm",
       "name": "npm:@types/qs",
@@ -9432,6 +10077,15 @@
         "hash": "sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg=="
       }
     },
+    "npm:atomic-sleep": {
+      "type": "npm",
+      "name": "npm:atomic-sleep",
+      "data": {
+        "version": "1.0.0",
+        "packageName": "atomic-sleep",
+        "hash": "sha512-kNOjDqAh7px0XWNI+4QbzoiR/nTkHAWNud2uvnJquD1/x5a7EQZMJT0AczqK0Qn67oY/TTQ1LbUKajZpp3I9tQ=="
+      }
+    },
     "npm:autoprefixer": {
       "type": "npm",
       "name": "npm:autoprefixer",
@@ -9873,6 +10527,33 @@
         "hash": "sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ=="
       }
     },
+    "npm:bullmq": {
+      "type": "npm",
+      "name": "npm:bullmq",
+      "data": {
+        "version": "5.66.2",
+        "packageName": "bullmq",
+        "hash": "sha512-0PrkpIakIntkBcPLltPIRWdLC1FTLUa/VhJkmEfobb5YUQjoUwJdmmf7HX+o/vMonS5048JpP+abf9lVRUFEjA=="
+      }
+    },
+    "npm:uuid@11.1.0": {
+      "type": "npm",
+      "name": "npm:uuid@11.1.0",
+      "data": {
+        "version": "11.1.0",
+        "packageName": "uuid",
+        "hash": "sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A=="
+      }
+    },
+    "npm:uuid": {
+      "type": "npm",
+      "name": "npm:uuid",
+      "data": {
+        "version": "8.3.2",
+        "packageName": "uuid",
+        "hash": "sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg=="
+      }
+    },
     "npm:bundle-name": {
       "type": "npm",
       "name": "npm:bundle-name",
@@ -10141,6 +10822,15 @@
         "version": "5.0.0",
         "packageName": "is-plain-object",
         "hash": "sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q=="
+      }
+    },
+    "npm:cluster-key-slot": {
+      "type": "npm",
+      "name": "npm:cluster-key-slot",
+      "data": {
+        "version": "1.1.2",
+        "packageName": "cluster-key-slot",
+        "hash": "sha512-RMr0FhtfXemyinomL4hrWcYJxmX6deFdCxpJzhDttxgO1+bcCnkk+9drydLVDmAMG7NE6aN/fl4F7ucU/90gAA=="
       }
     },
     "npm:co": {
@@ -10836,6 +11526,15 @@
         "hash": "sha512-39BOQLs9ZjKh0/patS9nrT8wc3ioX3/eA/zgbKNopnF2wCqJEoxywwwElATYvRsXdnOxA/OQeQoFZ3rFjVajhg=="
       }
     },
+    "npm:dateformat": {
+      "type": "npm",
+      "name": "npm:dateformat",
+      "data": {
+        "version": "4.6.3",
+        "packageName": "dateformat",
+        "hash": "sha512-2P0p0pFGzHS5EMnhdxQi7aJN+iMheud0UhG4dlE1DLAlvL8JHjJJTX/CSm4JXwV0Ka5nGk3zC5mcb5bUQUxxMA=="
+      }
+    },
     "npm:decimal.js": {
       "type": "npm",
       "name": "npm:decimal.js",
@@ -11014,6 +11713,15 @@
         "version": "1.0.0",
         "packageName": "delegates",
         "hash": "sha512-bd2L678uiWATM6m5Z1VzNCErI3jiGzt6HGY8OVICs40JQq/HALfbyNJmp0UDakEY4pMMaN0Ly5om/B1VI/+xfQ=="
+      }
+    },
+    "npm:denque": {
+      "type": "npm",
+      "name": "npm:denque",
+      "data": {
+        "version": "2.1.0",
+        "packageName": "denque",
+        "hash": "sha512-HVQE3AAb/pxF8fQAoiqpvg9i3evqug3hoiwakOyZAwJm+6vZehbkYXZ0l4JxS+I3QxM97v5aaRNhj8v5oBhekw=="
       }
     },
     "npm:depd": {
@@ -12024,6 +12732,15 @@
         "hash": "sha512-yblEwXAbGv1VQDmow7s38W77hzAgJAO50ztBLMcUyUBfxv1HC+LGwtiEN+Co6LtlqT/5uwVOxsD4TNIilWhwdQ=="
       }
     },
+    "npm:fast-copy": {
+      "type": "npm",
+      "name": "npm:fast-copy",
+      "data": {
+        "version": "4.0.2",
+        "packageName": "fast-copy",
+        "hash": "sha512-ybA6PDXIXOXivLJK/z9e+Otk7ve13I4ckBvGO5I2RRmBU1gMHLVDJYEuJYhGwez7YNlYji2M2DvVU+a9mSFDlw=="
+      }
+    },
     "npm:fast-deep-equal": {
       "type": "npm",
       "name": "npm:fast-deep-equal",
@@ -12861,6 +13578,15 @@
         "hash": "sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw=="
       }
     },
+    "npm:help-me": {
+      "type": "npm",
+      "name": "npm:help-me",
+      "data": {
+        "version": "5.0.0",
+        "packageName": "help-me",
+        "hash": "sha512-7xgomUX6ADmcYzFik0HzAxh/73YlKR9bmFzf51CZwR+b6YtzU2m0u49hQCqV6SvlqIqsaxovfwdvbnsw3b/zpg=="
+      }
+    },
     "npm:homedir-polyfill": {
       "type": "npm",
       "name": "npm:homedir-polyfill",
@@ -13300,6 +14026,15 @@
         "version": "3.1.1",
         "packageName": "interpret",
         "hash": "sha512-6xwYfHbajpoF0xLW+iwLkhwgvLoZDfjYfoFNu8ftMoXINzwuymNLd9u/KmwtdT2GbR+/Cz66otEGEVVUHX9QLQ=="
+      }
+    },
+    "npm:ioredis": {
+      "type": "npm",
+      "name": "npm:ioredis",
+      "data": {
+        "version": "5.8.2",
+        "packageName": "ioredis",
+        "hash": "sha512-C6uC+kleiIMmjViJINWk80sOQw5lEzse1ZmvD+S/s8p8CWapftSaC+kocGTx6xrbrJ4WmYQGC08ffHLr6ToR6Q=="
       }
     },
     "npm:ip-address": {
@@ -14328,6 +15063,15 @@
         "hash": "sha512-1vUQX+IdDMVPj4k8kOxgUqlcK518yluMuGZwqlr44FS1ppZB/5GWh4rZG89erpOBOJjU/OBsnCVFfapsRz6nEA=="
       }
     },
+    "npm:joycon": {
+      "type": "npm",
+      "name": "npm:joycon",
+      "data": {
+        "version": "3.1.1",
+        "packageName": "joycon",
+        "hash": "sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw=="
+      }
+    },
     "npm:jsesc": {
       "type": "npm",
       "name": "npm:jsesc",
@@ -14733,6 +15477,15 @@
         "hash": "sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow=="
       }
     },
+    "npm:lodash.defaults": {
+      "type": "npm",
+      "name": "npm:lodash.defaults",
+      "data": {
+        "version": "4.2.0",
+        "packageName": "lodash.defaults",
+        "hash": "sha512-qjxPLHd3r5DnsdGacqOMU6pb/avJzdh9tFX2ymgoZE27BmjXrNy/y4LoaiTeAb+O3gL8AfpJGtqfX/ae2leYYQ=="
+      }
+    },
     "npm:lodash.includes": {
       "type": "npm",
       "name": "npm:lodash.includes",
@@ -14740,6 +15493,15 @@
         "version": "4.3.0",
         "packageName": "lodash.includes",
         "hash": "sha512-W3Bx6mdkRTGtlJISOvVD/lbqjTlPPUDTMnlXZFnVwi9NKJ6tiAk6LVdlhZMm17VZisqhKcgzpO5Wz91PCt5b0w=="
+      }
+    },
+    "npm:lodash.isarguments": {
+      "type": "npm",
+      "name": "npm:lodash.isarguments",
+      "data": {
+        "version": "3.1.0",
+        "packageName": "lodash.isarguments",
+        "hash": "sha512-chi4NHZlZqZD18a0imDHnZPrDeBbTtVN7GXMwuGdRH9qotxAjYs3aVLKc7zNOG9eddR5Ksd8rvFEBc9SsggPpg=="
       }
     },
     "npm:lodash.isboolean": {
@@ -15102,6 +15864,24 @@
         "hash": "sha512-Y3wQdFg2Va6etvQ5I82yUhGdsKrcYox6p7FfL1LbK2J4V01F9TGlepTIhnK24t7koZibmg82KGglhA1XK5IsLQ=="
       }
     },
+    "npm:msgpackr": {
+      "type": "npm",
+      "name": "npm:msgpackr",
+      "data": {
+        "version": "1.11.5",
+        "packageName": "msgpackr",
+        "hash": "sha512-UjkUHN0yqp9RWKy0Lplhh+wlpdt9oQBYgULZOiFhV3VclSF1JnSQWZ5r9gORQlNYaUKQoR8itv7g7z1xDDuACA=="
+      }
+    },
+    "npm:msgpackr-extract": {
+      "type": "npm",
+      "name": "npm:msgpackr-extract",
+      "data": {
+        "version": "3.0.3",
+        "packageName": "msgpackr-extract",
+        "hash": "sha512-P0efT1C9jIdVRefqjzOQ9Xml57zpOXnIuS+csaB4MdZbTdmGDLo8XhzBG1N7aO11gKDDkJvBLULeFTo46wwreA=="
+      }
+    },
     "npm:multer": {
       "type": "npm",
       "name": "npm:multer",
@@ -15280,6 +16060,15 @@
         "version": "1.3.3",
         "packageName": "node-forge",
         "hash": "sha512-rLvcdSyRCyouf6jcOIPe/BgwG/d7hKjzMKOas33/pHEr6gbq18IK9zV7DiPvzsz0oBJPme6qr6H6kGZuI9/DZg=="
+      }
+    },
+    "npm:node-gyp-build-optional-packages": {
+      "type": "npm",
+      "name": "npm:node-gyp-build-optional-packages",
+      "data": {
+        "version": "5.2.2",
+        "packageName": "node-gyp-build-optional-packages",
+        "hash": "sha512-s+w+rBWnpTMwSFbaE0UXsRlg7hU4FjekKU4eyAih5T8nJuNZT1nNsskXpxmeqSK9UzkBl6UgRlnKc8hz8IEqOw=="
       }
     },
     "npm:node-int64": {
@@ -15523,6 +16312,15 @@
         "version": "2.1.1",
         "packageName": "obug",
         "hash": "sha512-uTqF9MuPraAQ+IsnPf366RG4cP9RtUi7MLO1N3KEc+wb0a6yKpeL0lmk2IB1jY5KHPAlTc6T/JRdC/YqxHNwkQ=="
+      }
+    },
+    "npm:on-exit-leak-free": {
+      "type": "npm",
+      "name": "npm:on-exit-leak-free",
+      "data": {
+        "version": "2.1.2",
+        "packageName": "on-exit-leak-free",
+        "hash": "sha512-0eJJY6hXLGf1udHwfNftBqH+g73EU4B504nZeKpz1sYRKafAghwxEJunB2O7rDZkL4PGfsMVnTXZ2EjibbqcsA=="
       }
     },
     "npm:on-finished": {
@@ -15946,6 +16744,69 @@
         "version": "1.1.1",
         "packageName": "picocolors",
         "hash": "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA=="
+      }
+    },
+    "npm:pino": {
+      "type": "npm",
+      "name": "npm:pino",
+      "data": {
+        "version": "10.1.0",
+        "packageName": "pino",
+        "hash": "sha512-0zZC2ygfdqvqK8zJIr1e+wT1T/L+LF6qvqvbzEQ6tiMAoTqEVK9a1K3YRu8HEUvGEvNqZyPJTtb2sNIoTkB83w=="
+      }
+    },
+    "npm:pino-abstract-transport": {
+      "type": "npm",
+      "name": "npm:pino-abstract-transport",
+      "data": {
+        "version": "2.0.0",
+        "packageName": "pino-abstract-transport",
+        "hash": "sha512-F63x5tizV6WCh4R6RHyi2Ml+M70DNRXt/+HANowMflpgGFMAym/VKm6G7ZOQRjqN7XbGxK1Lg9t6ZrtzOaivMw=="
+      }
+    },
+    "npm:pino-abstract-transport@3.0.0": {
+      "type": "npm",
+      "name": "npm:pino-abstract-transport@3.0.0",
+      "data": {
+        "version": "3.0.0",
+        "packageName": "pino-abstract-transport",
+        "hash": "sha512-wlfUczU+n7Hy/Ha5j9a/gZNy7We5+cXp8YL+X+PG8S0KXxw7n/JXA3c46Y0zQznIJ83URJiwy7Lh56WLokNuxg=="
+      }
+    },
+    "npm:pino-pretty": {
+      "type": "npm",
+      "name": "npm:pino-pretty",
+      "data": {
+        "version": "13.1.3",
+        "packageName": "pino-pretty",
+        "hash": "sha512-ttXRkkOz6WWC95KeY9+xxWL6AtImwbyMHrL1mSwqwW9u+vLp/WIElvHvCSDg0xO/Dzrggz1zv3rN5ovTRVowKg=="
+      }
+    },
+    "npm:strip-json-comments@5.0.3": {
+      "type": "npm",
+      "name": "npm:strip-json-comments@5.0.3",
+      "data": {
+        "version": "5.0.3",
+        "packageName": "strip-json-comments",
+        "hash": "sha512-1tB5mhVo7U+ETBKNf92xT4hrQa3pm0MZ0PQvuDnWgAAGHDsfp4lPSpiS6psrSiet87wyGPh9ft6wmhOMQ0hDiw=="
+      }
+    },
+    "npm:strip-json-comments": {
+      "type": "npm",
+      "name": "npm:strip-json-comments",
+      "data": {
+        "version": "3.1.1",
+        "packageName": "strip-json-comments",
+        "hash": "sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig=="
+      }
+    },
+    "npm:pino-std-serializers": {
+      "type": "npm",
+      "name": "npm:pino-std-serializers",
+      "data": {
+        "version": "7.0.0",
+        "packageName": "pino-std-serializers",
+        "hash": "sha512-e906FRY0+tV27iq4juKzSYPbUj2do2X2JX4EzSca1631EB2QJQUqGbDuERal7LCtOpxl6x3+nvo9NPZcmjkiFA=="
       }
     },
     "npm:pirates": {
@@ -16722,6 +17583,15 @@
         "hash": "sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag=="
       }
     },
+    "npm:process-warning": {
+      "type": "npm",
+      "name": "npm:process-warning",
+      "data": {
+        "version": "5.0.0",
+        "packageName": "process-warning",
+        "hash": "sha512-a39t9ApHNx2L4+HBnQKqxxHNs1r7KF+Intd8Q/g1bUh6q0WIp9voPXJ/x0j+ZL45KF1pJd9+q2jLIRMfvEshkA=="
+      }
+    },
     "npm:promise.series": {
       "type": "npm",
       "name": "npm:promise.series",
@@ -16785,6 +17655,15 @@
         "hash": "sha512-JZd3gMVBAVQkSs6HdNZo9Sdo0LNcQeMNP3CozBJb3JYC/QUYZTnKxP+f8oWRX4rHP5EurWxqAHTSwUCjlNKa1w=="
       }
     },
+    "npm:pump": {
+      "type": "npm",
+      "name": "npm:pump",
+      "data": {
+        "version": "3.0.3",
+        "packageName": "pump",
+        "hash": "sha512-todwxLMY7/heScKmntwQG8CXVkWUOdYxIvY2s0VWAAMh/nd8SoYiRaKjlr7+iCs984f2P8zvrfWcDDYVb73NfA=="
+      }
+    },
     "npm:punycode": {
       "type": "npm",
       "name": "npm:punycode",
@@ -16828,6 +17707,15 @@
         "version": "1.2.3",
         "packageName": "queue-microtask",
         "hash": "sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A=="
+      }
+    },
+    "npm:quick-format-unescaped": {
+      "type": "npm",
+      "name": "npm:quick-format-unescaped",
+      "data": {
+        "version": "4.0.4",
+        "packageName": "quick-format-unescaped",
+        "hash": "sha512-tYC1Q1hgyRuHgloV/YXs2w15unPVh8qfu/qCTfhTYamaw7fyhumKa2yGpdSo87vY32rIclj+4fWYQXUMs9EHvg=="
       }
     },
     "npm:quick-lru": {
@@ -16920,6 +17808,15 @@
         "hash": "sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA=="
       }
     },
+    "npm:real-require": {
+      "type": "npm",
+      "name": "npm:real-require",
+      "data": {
+        "version": "0.2.0",
+        "packageName": "real-require",
+        "hash": "sha512-57frrGM/OCTLqLOAh0mhVA9VBMHd+9U7Zb2THMGdBUoZVOtGbJzjxsYGDJ3A9AYYCP4hn6y1TVbaOfzWtm5GFg=="
+      }
+    },
     "npm:rechoir": {
       "type": "npm",
       "name": "npm:rechoir",
@@ -16927,6 +17824,24 @@
         "version": "0.8.0",
         "packageName": "rechoir",
         "hash": "sha512-/vxpCXddiX8NGfGO/mTafwjq4aFa/71pvamip0++IQk3zG8cbCj0fifNPrjjF1XMXUne91jL9OoxmdykoEtifQ=="
+      }
+    },
+    "npm:redis-errors": {
+      "type": "npm",
+      "name": "npm:redis-errors",
+      "data": {
+        "version": "1.2.0",
+        "packageName": "redis-errors",
+        "hash": "sha512-1qny3OExCf0UvUV/5wpYKf2YwPcOqXzkwKKSmKHiE6ZMQs5heeE/c8eXK+PNllPvmjgAbfnsbpkGZWy8cBpn9w=="
+      }
+    },
+    "npm:redis-parser": {
+      "type": "npm",
+      "name": "npm:redis-parser",
+      "data": {
+        "version": "3.0.0",
+        "packageName": "redis-parser",
+        "hash": "sha512-DJnGAeenTdpMEH6uAJRK/uiyEIH9WVsUmoLwzudwGJUwZPp80PDBWPHXSAGNPwNvIXAbe7MSUB1zQFugFml66A=="
       }
     },
     "npm:reflect.getprototypeof": {
@@ -17253,6 +18168,15 @@
         "hash": "sha512-x/+Cz4YrimQxQccJf5mKEbIa1NzeCRNI5Ecl/ekmlYaampdNLPalVyIcCZNNH3MvmqBugV5TMYZXv0ljslUlaw=="
       }
     },
+    "npm:safe-stable-stringify": {
+      "type": "npm",
+      "name": "npm:safe-stable-stringify",
+      "data": {
+        "version": "2.5.0",
+        "packageName": "safe-stable-stringify",
+        "hash": "sha512-b3rppTKm9T+PsVCBEOUR46GWI7fdOs00VKZ1+9c1EWDaDMvjQc6tUwuFyIprgGgTcWoVHSKrU8H31ZHA2e0RHA=="
+      }
+    },
     "npm:safer-buffer": {
       "type": "npm",
       "name": "npm:safer-buffer",
@@ -17494,6 +18418,15 @@
         "version": "3.0.1",
         "packageName": "secure-compare",
         "hash": "sha512-AckIIV90rPDcBcglUwXPF3kg0P0qmPsPXAj6BBEENQE1p5yA1xfmDJzfi1Tappj37Pv2mVbKpL3Z1T+Nn7k1Qw=="
+      }
+    },
+    "npm:secure-json-parse": {
+      "type": "npm",
+      "name": "npm:secure-json-parse",
+      "data": {
+        "version": "4.1.0",
+        "packageName": "secure-json-parse",
+        "hash": "sha512-l4KnYfEyqYJxDwlNVyRfO2E4NTHfMKAWdUuA8J0yve2Dz/E/PdBepY03RvyJpssIpRFwJoCD55wA+mEDs6ByWA=="
       }
     },
     "npm:seek-bzip": {
@@ -17766,6 +18699,15 @@
         "hash": "sha512-HehCEsotFqbPW9sJ8WVYB6UbmIMv7kUUORIF2Nncq4VQvBfNBLibW9YZR5dlYCSUhwcD628pRllm7n+E+YTzJw=="
       }
     },
+    "npm:sonic-boom": {
+      "type": "npm",
+      "name": "npm:sonic-boom",
+      "data": {
+        "version": "4.2.0",
+        "packageName": "sonic-boom",
+        "hash": "sha512-INb7TM37/mAcsGmc9hyyI6+QR3rR1zVRu36B0NeGXKnOOLiZOfER5SA+N7X7k3yUYRzLWafduTDvJAfDswwEww=="
+      }
+    },
     "npm:sort-keys": {
       "type": "npm",
       "name": "npm:sort-keys",
@@ -17881,6 +18823,15 @@
         "version": "0.0.2",
         "packageName": "stackback",
         "hash": "sha512-1XMJE5fQo1jGH6Y/7ebnwPOBEkIEnT4QF32d5R1+VXdXveM0IBMJt8zfaxX1P3QhVwrYe+576+jkANtSS2mBbw=="
+      }
+    },
+    "npm:standard-as-callback": {
+      "type": "npm",
+      "name": "npm:standard-as-callback",
+      "data": {
+        "version": "2.1.0",
+        "packageName": "standard-as-callback",
+        "hash": "sha512-qoRRSyROncaz1z0mvYqIE4lCd9p2R90i6GxW3uZv5ucSu8tU7B5HXUP1gG8pVZsYNVaXjk8ClXHPttLyxAL48A=="
       }
     },
     "npm:std-env": {
@@ -18061,15 +19012,6 @@
         "version": "2.0.0",
         "packageName": "strip-final-newline",
         "hash": "sha512-BrpvfNAE3dcvq7ll3xVumzjKjZQ5tI1sEUIKr3Uoks0XUl45St3FlatVqef9prk4jRDzhW6WZg+3bk93y6pLjA=="
-      }
-    },
-    "npm:strip-json-comments": {
-      "type": "npm",
-      "name": "npm:strip-json-comments",
-      "data": {
-        "version": "3.1.1",
-        "packageName": "strip-json-comments",
-        "hash": "sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig=="
       }
     },
     "npm:strtok3": {
@@ -18277,6 +19219,15 @@
         "version": "2.5.0",
         "packageName": "thingies",
         "hash": "sha512-s+2Bwztg6PhWUD7XMfeYm5qliDdSiZm7M7n8KjTkIsm3l/2lgVRc2/Gx/v+ZX8lT4FMA+i8aQvhcWylldc+ZNw=="
+      }
+    },
+    "npm:thread-stream": {
+      "type": "npm",
+      "name": "npm:thread-stream",
+      "data": {
+        "version": "3.1.0",
+        "packageName": "thread-stream",
+        "hash": "sha512-OqyPZ9u96VohAyMfJykzmivOrY2wfMSf3C5TtFJVgN+Hm6aj+voFhlK+kZEIv2FBh1X6Xp3DlnCOfEQ3B2J86A=="
       }
     },
     "npm:through": {
@@ -18765,15 +19716,6 @@
         "hash": "sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA=="
       }
     },
-    "npm:uuid": {
-      "type": "npm",
-      "name": "npm:uuid",
-      "data": {
-        "version": "8.3.2",
-        "packageName": "uuid",
-        "hash": "sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg=="
-      }
-    },
     "npm:v8-compile-cache-lib": {
       "type": "npm",
       "name": "npm:v8-compile-cache-lib",
@@ -19133,6 +20075,15 @@
         "packageName": "yn",
         "hash": "sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q=="
       }
+    },
+    "npm:zod": {
+      "type": "npm",
+      "name": "npm:zod",
+      "data": {
+        "version": "4.2.1",
+        "packageName": "zod",
+        "hash": "sha512-0wZ1IRqGGhMP76gLqz8EyfBXKk0J2qo2+H3fi4mcUP/KtTocoX08nmIAHl1Z2kJIZbZee8KOpBCSNPRgauucjw=="
+      }
     }
   },
   "dependencies": {
@@ -19258,6 +20209,23 @@
         "type": "static"
       }
     ],
+    "worker-github-e2e": [
+      {
+        "source": "worker-github-e2e",
+        "target": "worker-github",
+        "type": "implicit"
+      },
+      {
+        "source": "worker-github-e2e",
+        "target": "npm:@nx/node",
+        "type": "static"
+      },
+      {
+        "source": "worker-github-e2e",
+        "target": "npm:axios",
+        "type": "static"
+      }
+    ],
     "worker-gworkspace": [
       {
         "source": "worker-gworkspace",
@@ -19318,6 +20286,11 @@
       },
       {
         "source": "client-dashboard",
+        "target": "npm:@prisma/client",
+        "type": "static"
+      },
+      {
+        "source": "client-dashboard",
         "target": "npm:@nx/react",
         "type": "static"
       }
@@ -19339,7 +20312,55 @@
         "type": "static"
       }
     ],
-    "audit-engine": [],
+    "worker-github": [
+      {
+        "source": "worker-github",
+        "target": "npm:pg",
+        "type": "static"
+      },
+      {
+        "source": "worker-github",
+        "target": "npm:pino",
+        "type": "static"
+      },
+      {
+        "source": "worker-github",
+        "target": "npm:@nestjs/testing",
+        "type": "static"
+      },
+      {
+        "source": "worker-github",
+        "target": "npm:@nestjs/common",
+        "type": "static"
+      },
+      {
+        "source": "worker-github",
+        "target": "npm:@prisma/client",
+        "type": "static"
+      },
+      {
+        "source": "worker-github",
+        "target": "npm:bullmq",
+        "type": "static"
+      },
+      {
+        "source": "worker-github",
+        "target": "npm:zod",
+        "type": "static"
+      },
+      {
+        "source": "worker-github",
+        "target": "npm:@nx/webpack",
+        "type": "static"
+      }
+    ],
+    "audit-engine": [
+      {
+        "source": "audit-engine",
+        "target": "npm:@prisma/client",
+        "type": "static"
+      }
+    ],
     "shared-types": [],
     "api-gateway": [
       {
@@ -19374,6 +20395,11 @@
       },
       {
         "source": "api-gateway",
+        "target": "npm:pg",
+        "type": "static"
+      },
+      {
+        "source": "api-gateway",
         "target": "npm:@nestjs/core",
         "type": "static"
       },
@@ -19396,20 +20422,516 @@
         "type": "static"
       }
     ],
-    "libs": [
+    "scheduler": [
       {
-        "source": "libs",
-        "target": "npm:@prisma/client",
-        "type": "static"
-      },
-      {
-        "source": "libs",
+        "source": "scheduler",
         "target": "npm:jsonc-eslint-parser",
         "type": "dynamic"
       },
       {
+        "source": "scheduler",
+        "target": "npm:tslib",
+        "type": "static"
+      },
+      {
+        "source": "scheduler",
+        "target": "npm:bullmq",
+        "type": "static"
+      }
+    ],
+    "db": [
+      {
+        "source": "db",
+        "target": "npm:@prisma/client",
+        "type": "static"
+      }
+    ],
+    "libs": [
+      {
         "source": "libs",
         "target": "npm:tslib",
+        "type": "static"
+      }
+    ],
+    "@audit-tool-monorepo/source": [
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nx/eslint-plugin",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:jest",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nx/jest",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@angular-devkit/architect",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@angular-devkit/core",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@eslint/js",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nestjs/schematics",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nestjs/testing",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@next/eslint-plugin-next",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nx/devkit",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nx/eslint",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nx/js",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nx/key",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nx/nest",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nx/next",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nx/node",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nx/playwright",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nx/powerpack-license",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nx/react",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nx/vite",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nx/vitest",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nx/web",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nx/webpack",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nx/workspace",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@openapitools/openapi-generator-cli",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@playwright/test",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@swc-node/register",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@swc/cli",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@swc/core",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@swc/helpers",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@swc/wasm",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@testing-library/dom",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@testing-library/react",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@types/jest",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@types/node",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@types/passport-jwt",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@types/pg",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@types/pino",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@types/react",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@types/react-dom",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@vitejs/plugin-react",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@vitest/coverage-v8",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@vitest/ui",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:autoprefixer",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:babel-jest",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:eslint",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:eslint-config-next",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:eslint-config-prettier",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:eslint-plugin-import",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:eslint-plugin-jsx-a11y",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:eslint-plugin-playwright",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:eslint-plugin-react",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:eslint-plugin-react-hooks",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:jest-environment-jsdom",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:jest-environment-node",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:jest-util",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:jiti",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:jsdom",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:jsonc-eslint-parser",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:nx",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:postcss",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:prettier",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:prisma",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:tailwindcss",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:ts-jest",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:ts-node",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:tslib",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:typescript",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:typescript-eslint",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:vite",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:vitest",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:webpack-cli",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nestjs/common",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nestjs/core",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nestjs/passport",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nestjs/platform-express",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@nestjs/swagger",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:@prisma/client",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:axios",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:bullmq",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:ioredis",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:jwks-rsa",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:lucide-react",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:next",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:passport",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:passport-jwt",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:pg",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:pino",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:pino-pretty",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:react",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:react-dom",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:react-router-dom",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:reflect-metadata",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:rxjs",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:swagger-ui-express",
+        "type": "static"
+      },
+      {
+        "source": "@audit-tool-monorepo/source",
+        "target": "npm:zod",
         "type": "static"
       }
     ],
@@ -29391,6 +30913,43 @@
         "type": "static"
       }
     ],
+    "npm:bullmq": [
+      {
+        "source": "npm:bullmq",
+        "target": "npm:cron-parser",
+        "type": "static"
+      },
+      {
+        "source": "npm:bullmq",
+        "target": "npm:ioredis",
+        "type": "static"
+      },
+      {
+        "source": "npm:bullmq",
+        "target": "npm:msgpackr",
+        "type": "static"
+      },
+      {
+        "source": "npm:bullmq",
+        "target": "npm:node-abort-controller",
+        "type": "static"
+      },
+      {
+        "source": "npm:bullmq",
+        "target": "npm:semver@7.7.3",
+        "type": "static"
+      },
+      {
+        "source": "npm:bullmq",
+        "target": "npm:tslib",
+        "type": "static"
+      },
+      {
+        "source": "npm:bullmq",
+        "target": "npm:uuid@11.1.0",
+        "type": "static"
+      }
+    ],
     "npm:bundle-name": [
       {
         "source": "npm:bundle-name",
@@ -33798,6 +35357,53 @@
         "type": "static"
       }
     ],
+    "npm:ioredis": [
+      {
+        "source": "npm:ioredis",
+        "target": "npm:@ioredis/commands",
+        "type": "static"
+      },
+      {
+        "source": "npm:ioredis",
+        "target": "npm:cluster-key-slot",
+        "type": "static"
+      },
+      {
+        "source": "npm:ioredis",
+        "target": "npm:debug",
+        "type": "static"
+      },
+      {
+        "source": "npm:ioredis",
+        "target": "npm:denque",
+        "type": "static"
+      },
+      {
+        "source": "npm:ioredis",
+        "target": "npm:lodash.defaults",
+        "type": "static"
+      },
+      {
+        "source": "npm:ioredis",
+        "target": "npm:lodash.isarguments",
+        "type": "static"
+      },
+      {
+        "source": "npm:ioredis",
+        "target": "npm:redis-errors",
+        "type": "static"
+      },
+      {
+        "source": "npm:ioredis",
+        "target": "npm:redis-parser",
+        "type": "static"
+      },
+      {
+        "source": "npm:ioredis",
+        "target": "npm:standard-as-callback",
+        "type": "static"
+      }
+    ],
     "npm:is-array-buffer": [
       {
         "source": "npm:is-array-buffer",
@@ -36376,6 +37982,50 @@
         "type": "static"
       }
     ],
+    "npm:msgpackr": [
+      {
+        "source": "npm:msgpackr",
+        "target": "npm:msgpackr-extract",
+        "type": "static"
+      }
+    ],
+    "npm:msgpackr-extract": [
+      {
+        "source": "npm:msgpackr-extract",
+        "target": "npm:node-gyp-build-optional-packages",
+        "type": "static"
+      },
+      {
+        "source": "npm:msgpackr-extract",
+        "target": "npm:@msgpackr-extract/msgpackr-extract-darwin-arm64",
+        "type": "static"
+      },
+      {
+        "source": "npm:msgpackr-extract",
+        "target": "npm:@msgpackr-extract/msgpackr-extract-darwin-x64",
+        "type": "static"
+      },
+      {
+        "source": "npm:msgpackr-extract",
+        "target": "npm:@msgpackr-extract/msgpackr-extract-linux-arm",
+        "type": "static"
+      },
+      {
+        "source": "npm:msgpackr-extract",
+        "target": "npm:@msgpackr-extract/msgpackr-extract-linux-arm64",
+        "type": "static"
+      },
+      {
+        "source": "npm:msgpackr-extract",
+        "target": "npm:@msgpackr-extract/msgpackr-extract-linux-x64",
+        "type": "static"
+      },
+      {
+        "source": "npm:msgpackr-extract",
+        "target": "npm:@msgpackr-extract/msgpackr-extract-win32-x64",
+        "type": "static"
+      }
+    ],
     "npm:multer": [
       {
         "source": "npm:multer",
@@ -36613,6 +38263,13 @@
       {
         "source": "npm:whatwg-url@5.0.0",
         "target": "npm:webidl-conversions@3.0.1",
+        "type": "static"
+      }
+    ],
+    "npm:node-gyp-build-optional-packages": [
+      {
+        "source": "npm:node-gyp-build-optional-packages",
+        "target": "npm:detect-libc@2.1.2",
         "type": "static"
       }
     ],
@@ -37480,6 +39137,144 @@
         "type": "static"
       }
     ],
+    "npm:pino": [
+      {
+        "source": "npm:pino",
+        "target": "npm:@pinojs/redact",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino",
+        "target": "npm:atomic-sleep",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino",
+        "target": "npm:on-exit-leak-free",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino",
+        "target": "npm:pino-abstract-transport",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino",
+        "target": "npm:pino-std-serializers",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino",
+        "target": "npm:process-warning",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino",
+        "target": "npm:quick-format-unescaped",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino",
+        "target": "npm:real-require",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino",
+        "target": "npm:safe-stable-stringify",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino",
+        "target": "npm:sonic-boom",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino",
+        "target": "npm:thread-stream",
+        "type": "static"
+      }
+    ],
+    "npm:pino-abstract-transport": [
+      {
+        "source": "npm:pino-abstract-transport",
+        "target": "npm:split2",
+        "type": "static"
+      }
+    ],
+    "npm:pino-pretty": [
+      {
+        "source": "npm:pino-pretty",
+        "target": "npm:colorette",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino-pretty",
+        "target": "npm:dateformat",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino-pretty",
+        "target": "npm:fast-copy",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino-pretty",
+        "target": "npm:fast-safe-stringify",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino-pretty",
+        "target": "npm:help-me",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino-pretty",
+        "target": "npm:joycon",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino-pretty",
+        "target": "npm:minimist",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino-pretty",
+        "target": "npm:on-exit-leak-free",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino-pretty",
+        "target": "npm:pino-abstract-transport@3.0.0",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino-pretty",
+        "target": "npm:pump",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino-pretty",
+        "target": "npm:secure-json-parse",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino-pretty",
+        "target": "npm:sonic-boom",
+        "type": "static"
+      },
+      {
+        "source": "npm:pino-pretty",
+        "target": "npm:strip-json-comments@5.0.3",
+        "type": "static"
+      }
+    ],
+    "npm:pino-abstract-transport@3.0.0": [
+      {
+        "source": "npm:pino-abstract-transport@3.0.0",
+        "target": "npm:split2",
+        "type": "static"
+      }
+    ],
     "npm:piscina": [
       {
         "source": "npm:piscina",
@@ -38285,6 +40080,18 @@
         "type": "static"
       }
     ],
+    "npm:pump": [
+      {
+        "source": "npm:pump",
+        "target": "npm:end-of-stream",
+        "type": "static"
+      },
+      {
+        "source": "npm:pump",
+        "target": "npm:once",
+        "type": "static"
+      }
+    ],
     "npm:qs": [
       {
         "source": "npm:qs",
@@ -38407,6 +40214,13 @@
       {
         "source": "npm:rechoir",
         "target": "npm:resolve",
+        "type": "static"
+      }
+    ],
+    "npm:redis-parser": [
+      {
+        "source": "npm:redis-parser",
+        "target": "npm:redis-errors",
         "type": "static"
       }
     ],
@@ -40472,6 +42286,13 @@
         "type": "static"
       }
     ],
+    "npm:sonic-boom": [
+      {
+        "source": "npm:sonic-boom",
+        "target": "npm:atomic-sleep",
+        "type": "static"
+      }
+    ],
     "npm:sort-keys": [
       {
         "source": "npm:sort-keys",
@@ -41423,6 +43244,13 @@
       {
         "source": "npm:thingies",
         "target": "npm:tslib",
+        "type": "static"
+      }
+    ],
+    "npm:thread-stream": [
+      {
+        "source": "npm:thread-stream",
+        "target": "npm:real-require",
         "type": "static"
       }
     ],
@@ -43207,5 +45035,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1766501810157
+  "computedAt": 1766601939546
 }
