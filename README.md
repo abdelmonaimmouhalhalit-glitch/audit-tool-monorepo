@@ -1,3 +1,11 @@
+# audit-tool-monorepo (archivé)
+
+Ancien dépôt. **Ne pas utiliser comme référence de candidature.**
+
+Code public à regarder : https://github.com/abdelmonaimmouhalhalit-glitch/terrops-showcase  
+Produit : https://terrops.fr
+
+---
 # AuditToolMonorepo
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
